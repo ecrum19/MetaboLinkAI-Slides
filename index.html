@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head prefix="foaf: http://xmlns.com/foaf/0.1/">
-    <title>Invited Presentation</title>
+    <title>From personal genomes to federated queries</title>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f5f6f2" />
+    <meta name="theme-color" content="#f5f5f5" />
 
     <link rel="stylesheet" href="shower/themes/material/styles/index.css" />
     <link rel="stylesheet" href="styles/edc-custom.css" />
@@ -25,32 +25,36 @@
   <body class="shower list" prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# foaf: http://xmlns.com/foaf/0.1/ owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# org: http://www.w3.org/ns/org# schema: http://schema.org/ cite: http://purl.org/spar/cito/" typeof="schema:PresentationDigitalDocument">
     <header class="caption">
       <div class="title">
-        <p class="kicker">Presentation</p>
-        <h1 property="schema:name">Invited Presentation</h1>
+        <p class="kicker">MetaboLinkAI · Invited Presentation</p>
+        <h1 property="schema:name">From personal genomes to federated queries</h1>
         <p class="caption-subtitle">
           <a href="https://ecrum19.github.io/eliascrum/" rel="schema:author">Elias Crum</a>
           <span aria-hidden="true"> · </span>
-          <a href="https://www.metabolinkai.net/">Virtual Meeting</a>
+          <a href="https://www.metabolinkai.net/">MetaboLinkAI · Virtual Meeting</a>
           <span aria-hidden="true"> · </span>
-          <time rel="schema:datePublished" datetime="2026-10-08">2026-10-08</time>
+          <time rel="schema:datePublished" datetime="2026-10-08">8 October 2026</time>
         </p>
       </div>
     </header>
 
-    <!-- Replace the sample slide copy below when creating a new deck. -->
     <section id="title" class="slide title" inlist="" rel="schema:hasPart" resource="#title">
+      <div class="title-visual" aria-hidden="true">
+        <img src="assets/images/title-dna.jpg" alt="" />
+      </div>
+
       <p class="eyebrow">
-        <a class="title-slide__venue-link" href="https://www.metabolinkai.net/" target="_blank" rel="noopener noreferrer">Virtual Meeting</a>
+        <a class="title-slide__venue-link" href="https://www.metabolinkai.net/" target="_blank" rel="noopener noreferrer">MetaboLinkAI · Virtual Meeting</a>
       </p>
 
       <div class="title-layout">
         <div class="title-copy">
-          <h2 property="schema:name">Invited Presentation</h2>
+          <h2 property="schema:name">From personal genomes to federated queries</h2>
+          <p class="title-subtitle">My PhD, real-world SPARQL federation, ontology tooling and variant data</p>
           <div class="title-details">
-            <p class="byline">
-              <a href="https://ecrum19.github.io/eliascrum/" target="_blank" rel="noopener noreferrer">Elias Crum</a>
-            </p>
-            <p class="date"><time datetime="2026-10-08">2026-10-08</time></p>
+            <p class="byline"><span class="author"><a href="https://orcid.org/0009-0005-3991-754X" target="_blank" rel="noopener noreferrer" title="ORCID 0009-0005-3991-754X">Elias Crum</a><sup>1,2</sup></span></p>
+            <p class="affiliation"><sup>1</sup> <a href="https://idlab.ugent.be/" target="_blank" rel="noopener noreferrer">IDLab</a>, <a href="https://www.ugent.be/en" target="_blank" rel="noopener noreferrer">Ghent University</a> – <a href="https://www.imec-int.com/en" target="_blank" rel="noopener noreferrer">imec</a>, Belgium</p>
+            <p class="affiliation"><sup>2</sup> <a href="https://vito.be/en" target="_blank" rel="noopener noreferrer">VITO</a>, Belgium</p>
+            <p class="date"><time datetime="2026-10-08">8 October 2026</time></p>
           </div>
         </div>
 
@@ -64,118 +68,1548 @@
           <a class="title-logo title-logo--vito" href="https://vito.be/en" target="_blank" rel="noopener noreferrer" aria-label="VITO">
             <img src="assets/logos/vito.png" alt="VITO" />
           </a>
-          <a class="title-logo title-logo--idlab" href="https://idlab.ugent.be/" target="_blank" rel="noopener noreferrer" aria-label="IDLab">
+          <a class="title-logo title-logo--idlab" href="https://idlab.ugent.be/" target="_blank" rel="noopener noreferrer" aria-label="IDLab - Internet and Data Lab">
             <img src="assets/logos/idlab.png" alt="IDLab - Internet and Data Lab" />
           </a>
         </aside>
       </div>
     </section>
 
-    <section id="intro" class="slide slide--dark" inlist="" rel="schema:hasPart" resource="#intro">
-      <p class="eyebrow">01 / Context</p>
-      <h2 property="schema:name">Start with the question.</h2>
-      <p class="lead">A focused question gives the rest of the story somewhere to go.</p>
-    </section>
+    <!-- Shared icons and arrowheads, referenced by <use> in every slide. -->
+    <svg class="icon-defs" aria-hidden="true" focusable="false">
+      <defs>
+        <marker id="arrow-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#161616" /></marker>
+        <marker id="arrow-accent" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4a4a4a" /></marker>
+        <marker id="arrow-manual" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#161616" /></marker>
+        <marker id="arrow-algo" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6e6e6e" /></marker>
+        <marker id="arrow-light" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4a4a4a" /></marker>
+        <marker id="arrow-danger" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#161616" /></marker>
+        <pattern id="hatch-error" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="#fff" /><path d="M0 0V5" stroke="#8a8a8a" stroke-width="2.4" /></pattern>
+      </defs>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-user" viewBox="0 0 48 48"><circle cx="24" cy="15" r="8" /><path d="M8 42c0-9 7-15 16-15s16 6 16 15" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-users" viewBox="0 0 48 48"><circle cx="17" cy="16" r="6" /><circle cx="33" cy="16" r="6" /><path d="M5 38c0-7 5-12 12-12s12 5 12 12M24 30c2-2.5 5-4 9-4 7 0 11 5 11 12" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-db" viewBox="0 0 48 48"><ellipse cx="24" cy="10" rx="15" ry="5" /><path d="M9 10v28c0 2.8 6.7 5 15 5s15-2.2 15-5V10" /><path d="M9 19.5c0 2.8 6.7 5 15 5s15-2.2 15-5M9 29c0 2.8 6.7 5 15 5s15-2.2 15-5" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-gear" viewBox="0 0 48 48"><circle cx="24" cy="24" r="12" /><circle cx="24" cy="24" r="4.5" /><path stroke-width="5" stroke-linecap="butt" d="M24 4v7M24 37v7M4 24h7M37 24h7M9.9 9.9l4.9 4.9M33.2 33.2l4.9 4.9M9.9 38.1l4.9-4.9M33.2 14.8l4.9-4.9" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-doc" viewBox="0 0 48 48"><path d="M11 4h18l9 9v31H11z" /><path d="M29 4v9h9" /><path d="M17 22h15M17 29h15M17 36h9" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-table" viewBox="0 0 48 48"><rect x="6" y="9" width="36" height="30" rx="3" /><path d="M6 19h36M6 29h36M18 9v30" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-flask" viewBox="0 0 48 48"><path d="M18 5h12M20 5v13L9 38a3.5 3.5 0 0 0 3 5h24a3.5 3.5 0 0 0 3-5L28 18V5" /><path d="M13.5 30h21" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-globe" viewBox="0 0 48 48"><circle cx="24" cy="24" r="18" /><ellipse cx="24" cy="24" rx="8" ry="18" /><path d="M6 24h36M9 15h30M9 33h30" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-clock" viewBox="0 0 48 48"><circle cx="24" cy="24" r="17" /><path d="M24 14v10l7 5" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-block" viewBox="0 0 48 48"><circle cx="24" cy="24" r="17" /><path d="M12 36L36 12" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-move" viewBox="0 0 48 48"><path d="M21 8H9v32h30V28" /><path d="M27 8h13v13M40 8L22 26" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-power" viewBox="0 0 48 48"><path d="M24 6v17" /><path d="M14 12.5a15 15 0 1 0 20 0" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-check" viewBox="0 0 48 48"><path stroke-width="5" d="M11 25l8 8 18-19" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-pen" viewBox="0 0 48 48"><path d="M31 7l10 10-23 23H8V30z" /><path d="M26 12l10 10" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-search" viewBox="0 0 48 48"><circle cx="20" cy="20" r="12" /><path d="M29 29l12 12" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-calendar" viewBox="0 0 48 48"><rect x="6" y="10" width="36" height="32" rx="3" /><path d="M6 19h36M15 5v9M33 5v9" /><path d="M14 27h4M22 27h4M30 27h4M14 34h4M22 34h4" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-server" viewBox="0 0 48 48"><rect x="7" y="7" width="34" height="14" rx="2.5" /><rect x="7" y="27" width="34" height="14" rx="2.5" /><path stroke-width="4" d="M14 14h.01M14 34h.01" /><path d="M22 14h12M22 34h12" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-shield" viewBox="0 0 48 48"><path d="M24 5l15 6v11c0 10-6.5 17-15 21-8.5-4-15-11-15-21V11z" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-chart" viewBox="0 0 48 48"><path d="M7 7v34h34" /><path d="M14 31l8-9 7 6 11-14" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-down" viewBox="0 0 48 48"><path d="M7 7v34h34" /><path d="M13 14l9 9 6-5 12 13" /><path d="M32 31h8v-8" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-fork" viewBox="0 0 48 48"><path d="M24 43V27M24 27L11 12M24 27l13-15" /><path d="M8 19V9h10M40 19V9H30" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-bolt" viewBox="0 0 48 48"><path d="M27 4L11 27h12l-3 17 17-24H25z" /></symbol>
+        <symbol fill="currentColor" stroke="none" id="i-pine" viewBox="0 0 24 40"><path d="M12 0l10 16h-5l7 14H0l7-14H2z" /><rect x="10" y="30" width="4" height="9" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" id="i-protein" viewBox="0 0 48 48"><path d="M9 36 L17 28 L12 18 L22 10 L33 13 L31 24 L39 33" /><circle cx="9" cy="36" r="3.6" fill="currentColor" stroke="none" /><circle cx="17" cy="28" r="3.6" fill="currentColor" stroke="none" /><circle cx="12" cy="18" r="3.6" fill="currentColor" stroke="none" /><circle cx="22" cy="10" r="3.6" fill="currentColor" stroke="none" /><circle cx="33" cy="13" r="3.6" fill="currentColor" stroke="none" /><circle cx="31" cy="24" r="3.6" fill="currentColor" stroke="none" /><circle cx="39" cy="33" r="3.6" fill="currentColor" stroke="none" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-dna" viewBox="0 0 48 48"><path d="M15 4c0 10 18 10 18 20s-18 10-18 20" /><path d="M33 4c0 10-18 10-18 20s18 10 18 20" /><path d="M18 9h12M17 39h14M20 15h8M20 33h8" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-federation" viewBox="0 0 48 48"><path d="M10 11.5L24 25M38 11.5L24 25M24 40V25" /><circle cx="10" cy="11.5" r="4.4" fill="currentColor" stroke="none" /><circle cx="38" cy="11.5" r="4.4" fill="currentColor" stroke="none" /><circle cx="24" cy="40" r="4.4" fill="currentColor" stroke="none" /><circle cx="24" cy="25" r="7.5" fill="#fff" /><path stroke-width="1.8" d="M20.5 22.5h7M20.5 25h7M20.5 27.5h7" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-building" viewBox="0 0 48 48"><path d="M4 42h40M9 42V13l15-7 15 7v29" /><path d="M16 19h4M28 19h4M16 27h4M28 27h4M21 42v-8h6v8" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="i-lock" viewBox="0 0 48 48"><rect x="10" y="21" width="28" height="21" rx="3" /><path d="M16 21v-6a8 8 0 0 1 16 0v6" /><path d="M24 29v5" /></symbol>
+    </svg>
 
-    <section id="agenda" class="slide index" inlist="" rel="schema:hasPart" resource="#agenda">
-      <p class="eyebrow">Roadmap</p>
-      <ol class="agenda">
-        <li><a href="#context">Context</a></li>
-        <li><a href="#idea">The idea</a></li>
-        <li><a href="#takeaways">Takeaways</a></li>
-        <li><a href="#acknowledgments">Acknowledgments</a></li>
-        <li><a href="#references">References</a></li>
-        <li><a href="#supplemental">Supplemental slides</a></li>
+    <!-- Overview ------------------------------------------------------------ -->
+    <section id="overview" class="slide story" inlist="" rel="schema:hasPart" resource="#overview">
+      <p class="eyebrow">Overview</p>
+      <h2 property="schema:name">Four parts, one thread: making life-science data usable.</h2>
+      <ol class="overview">
+        <li><a href="#part-pengquin"><img class="part-logo" src="assets/logos/pengquin.png" alt="" /><strong><span>01</span>PENGQUIN, my PhD</strong><small>Personal genomes as privacy-aware, queryable knowledge graphs</small></a></li>
+        <li><a href="#part-federation"><svg aria-hidden="true"><use href="#i-federation" /></svg><strong><span>02</span>SPARQL federation in practice</strong><small>What happens when real queries meet real public endpoints</small></a></li>
+        <li><a href="#part-ocg"><img class="part-logo" src="assets/logos/ocg.png" alt="" /><strong><span>03</span>Ontology Companion Generator</strong><small>Turning an ontology into a browsable documentation site</small></a></li>
+        <li><a href="#part-variants"><img class="part-logo" src="assets/logos/vcf-rdfizer.png" alt="" /><strong><span>04</span>Semantifying genomic variant data</strong><small>Turning VCF files into linked, queryable and policy-aware RDF</small></a></li>
       </ol>
+      <p class="footnote">
+        <span>Supplementary slides S1–S7 at the end: <a href="#supplementary">index</a>.</span>
+      </p>
     </section>
 
-    <section id="context" class="slide" inlist="" rel="schema:hasPart" resource="#context">
-      <p class="eyebrow">02 / Context</p>
-      <h2 property="schema:name">Make the tension visible.</h2>
-      <div class="split">
+    <!-- 01 · PENGQUIN ======================================================= -->
+    <section id="part-pengquin" class="slide section-divider" inlist="" rel="schema:hasPart" resource="#part-pengquin">
+      <p class="eyebrow">Part 1 of 4</p>
+      <div class="section-divider__body">
         <div>
-          <p class="lead">What changed, what is difficult, and why does it matter now?</p>
+          <div class="section-divider__mark">
+            <span class="section-divider__number">01</span>
+            <img class="section-divider__logo" src="assets/logos/pengquin.png" alt="PENGQUIN logo: a penguin with a stethoscope, holding a magnifying glass and a DNA strand" />
+          </div>
+          <h2 property="schema:name">PENGQUIN</h2>
+          <p class="lead">Personal genome query in health care and clinical practice: storing, linking and querying genomic data with decentralized, semantic web technologies.</p>
         </div>
-        <div class="note">
-          <span class="note__label">Framing</span>
-          <p>Use one concrete observation, example, or constraint to ground the audience.</p>
+        <div class="section-contents">
+          <span class="note__label">In this part</span>
+          <ol>
+            <li>The problem: flat files in silos</li>
+            <li>The architecture</li>
+            <li>Genomes as linked data</li>
+            <li>Privacy policies</li>
+            <li>Querying one pod or thousands</li>
+          </ol>
         </div>
       </div>
-    </section>
-
-    <section id="idea" class="slide" inlist="" rel="schema:hasPart" resource="#idea">
-      <p class="eyebrow">03 / The idea</p>
-      <h2 property="schema:name">One clear idea beats a crowded slide.</h2>
-      <div class="cards">
-        <article class="card">
-          <span class="card__number">01</span>
-          <h3>Signal</h3>
-          <p>What should the audience notice first?</p>
-        </article>
-        <article class="card">
-          <span class="card__number">02</span>
-          <h3>Structure</h3>
-          <p>What is the simplest useful explanation?</p>
-        </article>
-        <article class="card">
-          <span class="card__number">03</span>
-          <h3>Story</h3>
-          <p>What should the audience remember later?</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="takeaways" class="slide slide--accent" inlist="" rel="schema:hasPart" resource="#takeaways">
-      <p class="eyebrow">04 / Takeaways</p>
-      <h2 property="schema:name">Leave room for the last thought.</h2>
-      <ul class="clean-list">
-        <li>Keep the central message easy to repeat.</li>
-        <li>Use evidence to sharpen the story, not to bury it.</li>
-        <li>End with the next useful question.</li>
-      </ul>
-    </section>
-
-    <section id="acknowledgments" class="slide slide--accent" inlist="" rel="schema:hasPart" resource="#acknowledgments">
-      <p class="eyebrow">05 / Acknowledgments</p>
-      <h2 property="schema:name">With thanks.</h2>
-      <div class="acknowledgments">
-        <p><strong>Research support</strong><br />Add funders, projects, or institutional support here.</p>
-        <p><strong>Contributors</strong><br />Add collaborators, mentors, reviewers, and everyone who helped shape the work.</p>
-      </div>
-    </section>
-
-    <section id="references" class="slide" inlist="" rel="schema:hasPart" resource="#references">
-      <p class="eyebrow">06 / References</p>
-      <h2 property="schema:name">Keep the evidence easy to revisit.</h2>
-      <ol class="references">
-        <li><cite>Author, A.</cite> (Year). Title of the referenced work. <span class="reference__meta">Publisher, journal, or DOI</span></li>
-        <li><cite>Author, B.</cite> (Year). Title of the referenced work. <span class="reference__meta">Publisher, journal, or DOI</span></li>
-        <li><cite>Organization.</cite> (Year). Title of the referenced resource. <span class="reference__meta">URL or report identifier</span></li>
+      <ol class="section-track" aria-label="Talk progress">
+        <li class="is-current">01 · PENGQUIN</li>
+        <li>02 · Federation</li>
+        <li>03 · Ontology Companion</li>
+        <li>04 · Variant data</li>
       </ol>
     </section>
 
-    <section id="supplemental" class="slide slide--dark" inlist="" rel="schema:hasPart" resource="#supplemental">
-      <p class="eyebrow">07 / Supplemental slides</p>
-      <h2 property="schema:name">Keep useful detail close at hand.</h2>
-      <div class="supplemental-grid">
-        <article class="supplemental-card">
-          <span class="note__label">Method</span>
-          <p>Add derivations, extra experiments, or implementation detail here.</p>
-        </article>
-        <article class="supplemental-card">
-          <span class="note__label">Discussion</span>
-          <p>Use these slides when a question needs more depth than the main story.</p>
-        </article>
+    <!-- 1.1 · The problem --------------------------------------------------- -->
+    <section id="pengquin-problem" class="slide story" inlist="" rel="schema:hasPart" resource="#pengquin-problem">
+      <p class="eyebrow">1.1 · The problem</p>
+      <h2 property="schema:name">A genome ends up as a flat file, held by one institution.</h2>
+      <figure class="visual">
+        <svg viewBox="0 0 880 330" role="img" aria-label="A sequenced genome of about 200 GB of raw reads becomes a variant file (VCF) of about 200 MB with about 3 million variants. The VCF is flat, tab-separated text, for example the row chr1, 13613, rs879980801, T, A, genotype 0/1. Copies sit in separate silos: a hospital and a genetics lab each keep their own, and the patient has no direct access.">
+          <g>
+            <circle cx="62" cy="62" r="44" class="disc--accent" />
+            <use href="#i-dna" x="34" y="34" width="56" height="56" class="ic-ink" />
+            <text x="62" y="130" class="t-label t-strong t-center">Sequenced genome</text>
+            <text x="62" y="148" class="t-small t-center">≈ 200 GB of raw reads<tspan class="fn" dy="-6">1</tspan></text>
+            <path class="flow draw" pathLength="1" d="M114 62H190" />
+            <text x="152" y="50" class="t-small t-center">variant calling</text>
+            <circle cx="246" cy="62" r="44" class="disc--accent" />
+            <use href="#i-doc" x="218" y="34" width="56" height="56" class="ic-ink" />
+            <text x="246" y="130" class="t-label t-strong t-center">Variant file (VCF)</text>
+            <text x="246" y="148" class="t-small t-center">≈ 200 MB · ≈ 3 M variants<tspan class="fn" dy="-6">1</tspan></text>
+          </g>
+          <g class="next">
+            <path class="flow flow--thin" d="M296 62H330" />
+            <rect class="panel" x="336" y="14" width="544" height="104" rx="10" />
+            <text x="354" y="42" class="t-code t-muted">#CHROM</text><text x="424" y="42" class="t-code t-muted">POS</text><text x="490" y="42" class="t-code t-muted">ID</text><text x="602" y="42" class="t-code t-muted">REF</text><text x="642" y="42" class="t-code t-muted">ALT</text><text x="682" y="42" class="t-code t-muted">…</text><text x="712" y="42" class="t-code t-muted">SAMPLE</text>
+            <text x="354" y="68" class="t-code">chr1</text><text x="424" y="68" class="t-code">13613</text><text x="490" y="68" class="t-code">rs879980801</text><text x="602" y="68" class="t-code">T</text><text x="642" y="68" class="t-code">A</text><text x="682" y="68" class="t-code">…</text><text x="712" y="68" class="t-code">0/1</text>
+            <text x="354" y="92" class="t-code">chr1</text><text x="424" y="92" class="t-code">13684</text><text x="490" y="92" class="t-code">rs71260404</text><text x="602" y="92" class="t-code">C</text><text x="642" y="92" class="t-code">T</text><text x="682" y="92" class="t-code">…</text><text x="712" y="92" class="t-code">1/1</text>
+            <text x="354" y="110" class="t-small">… ≈ 3 million more rows<tspan class="fn" dy="-6">2</tspan></text>
+            <text x="336" y="146" class="t-small t-italic">Flat, tab-separated text: no shared meaning, no links.</text>
+          </g>
+          <g class="next">
+            <rect class="panel" x="0" y="184" width="270" height="132" rx="14" />
+            <use href="#i-building" x="18" y="200" width="42" height="42" class="ic-ink" />
+            <text x="72" y="222" class="t-title">Hospital</text>
+            <text x="72" y="240" class="t-small">own copy, own systems</text>
+            <use href="#i-doc" x="72" y="256" width="40" height="40" class="ic-muted" />
+            <use href="#i-lock" x="104" y="270" width="26" height="26" class="ic-ink" />
+
+            <rect class="panel" x="305" y="184" width="270" height="132" rx="14" />
+            <use href="#i-flask" x="323" y="200" width="42" height="42" class="ic-ink" />
+            <text x="377" y="222" class="t-title">Genetics lab</text>
+            <text x="377" y="240" class="t-small">own copy, own format</text>
+            <use href="#i-doc" x="377" y="256" width="40" height="40" class="ic-muted" />
+            <use href="#i-lock" x="409" y="270" width="26" height="26" class="ic-ink" />
+
+            <rect class="panel" x="610" y="184" width="270" height="132" rx="14" />
+            <use href="#i-user" x="628" y="200" width="42" height="42" class="ic-ink" />
+            <text x="682" y="222" class="t-title">Patient</text>
+            <text x="682" y="240" class="t-small">no direct access</text>
+            <use href="#i-block" x="682" y="258" width="38" height="38" class="ic-muted" />
+
+            <use href="#i-block" x="276" y="238" width="24" height="24" class="ic-muted" />
+            <use href="#i-block" x="581" y="238" width="24" height="24" class="ic-muted" />
+          </g>
+        </svg>
+      </figure>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>The data exists, but as flat files in separate institutional silos.</span></p>
+      <p class="footnote">
+        <span><sup>1</sup> Sizes as in the <a href="https://ecrum19.github.io/eliascrum/talks/fwo-interview" target="_blank" rel="noopener noreferrer">PENGQUIN FWO fellowship proposal</a>; ≈ 3 M variants per person (<a href="https://doi.org/10.1126/science.aay5012" target="_blank" rel="noopener noreferrer">Bergström et al., Science 2020</a>).</span>
+        <span><sup>2</sup> Rows from the <a href="https://github.com/ecrum19/vcf-core-vocabulary/blob/main/examples/core/example.vcf" target="_blank" rel="noopener noreferrer">example file</a> of the <a href="https://w3id.org/vcf-core/vocab#" target="_blank" rel="noopener noreferrer">VCF Core vocabulary (v2.1.3)</a>.</span>
+      </p>
+    </section>
+
+    <!-- 1.2 · The architecture ---------------------------------------------- -->
+    <section id="pengquin-architecture" class="slide story" inlist="" rel="schema:hasPart" resource="#pengquin-architecture">
+      <p class="eyebrow">1.2 · The architecture</p>
+      <h2 property="schema:name">Each person's genome as linked data, in their own pod.</h2>
+      <figure class="visual">
+        <svg viewBox="0 0 880 330" role="img" aria-label="PENGQUIN in four steps. 1: the genome is stored as an RDF graph in the person's Solid pod. 2: the graph is linked to public knowledge in dbSNP, Ensembl and ClinVar. 3: ODRL policies around the pod decide who may read what. 4: patients, clinicians and researchers query one pod or many pods through a query engine.">
+          <g class="behind">
+            <rect class="pod-ghost" x="320" y="52" width="280" height="226" rx="18" />
+            <rect class="pod-ghost" x="310" y="46" width="280" height="226" rx="18" />
+          </g>
+          <!-- 1 · Store as RDF -->
+          <g>
+            <circle cx="312" cy="14" r="10" class="dot-accent" />
+            <text x="312" y="19" class="t-small t-strong t-center t-white">1</text>
+            <text x="328" y="19" class="t-label t-strong">Store as RDF</text>
+            <rect class="panel" x="300" y="40" width="280" height="226" rx="18" />
+            <use href="#i-user" x="318" y="54" width="30" height="30" class="ic-ink" />
+            <text x="358" y="70" class="t-title">Personal genome pod</text>
+            <text x="358" y="88" class="t-small">Solid · one per person</text>
+            <g>
+              <path class="kg-edge" d="M370 150L440 128M440 128L506 156M370 150L414 204M440 128L414 204M414 204L486 222M506 156L486 222M414 204L372 240" />
+              <circle cx="370" cy="150" r="8" class="kg-node" />
+              <circle cx="440" cy="128" r="10" class="kg-node" />
+              <circle cx="506" cy="156" r="8" class="kg-node" />
+              <circle cx="414" cy="204" r="9" class="kg-node" />
+              <circle cx="486" cy="222" r="8" class="kg-node" />
+              <circle cx="372" cy="240" r="7" class="kg-node" />
+            </g>
+            <text x="440" y="258" class="t-small t-center">variants as an RDF graph (VCF Core)</text>
+          </g>
+          <!-- 2 · Link to public knowledge -->
+          <g class="next">
+            <circle cx="702" cy="14" r="10" class="dot-accent" />
+            <text x="702" y="19" class="t-small t-strong t-center t-white">2</text>
+            <text x="718" y="19" class="t-label t-strong">Link</text>
+            <path class="flow flow--accent flow--thin draw" pathLength="1" d="M516 152L716 66" />
+            <path class="flow flow--accent flow--thin draw" pathLength="1" d="M516 158L716 150" />
+            <path class="flow flow--accent flow--thin draw" pathLength="1" d="M496 222L716 234" />
+            <use href="#i-db" x="722" y="42" width="44" height="44" class="ic-ink" />
+            <use href="#i-db" x="722" y="126" width="44" height="44" class="ic-ink" />
+            <use href="#i-db" x="722" y="210" width="44" height="44" class="ic-ink" />
+            <text x="776" y="62" class="t-label t-strong">dbSNP</text>
+            <text x="776" y="80" class="t-small">variant IDs</text>
+            <text x="776" y="146" class="t-label t-strong">Ensembl</text>
+            <text x="776" y="164" class="t-small">genes</text>
+            <text x="776" y="230" class="t-label t-strong">ClinVar</text>
+            <text x="776" y="248" class="t-small">clinical significance</text>
+            <text x="776" y="300" class="t-small t-italic">→ part 4</text>
+          </g>
+          <!-- 3 · Protect with policies -->
+          <g class="next">
+            <rect class="policy-ring" x="284" y="30" width="330" height="256" rx="26" />
+            <circle cx="440" cy="286" r="20" class="disc--white" />
+            <use href="#i-shield" x="427" y="273" width="26" height="26" class="ic-ink" />
+            <circle cx="394" cy="318" r="10" class="dot-accent" />
+            <text x="394" y="323" class="t-small t-strong t-center t-white">3</text>
+            <text x="410" y="323" class="t-label t-strong">Protect · ODRL</text>
+          </g>
+          <!-- 4 · Query one pod or many -->
+          <g class="next reveal-behind">
+            <circle cx="12" cy="14" r="10" class="dot-accent" />
+            <text x="12" y="19" class="t-small t-strong t-center t-white">4</text>
+            <text x="28" y="19" class="t-label t-strong">Query</text>
+            <use href="#i-user" x="0" y="50" width="38" height="38" class="ic-ink" />
+            <use href="#i-user" x="0" y="136" width="38" height="38" class="ic-ink" />
+            <use href="#i-user" x="0" y="222" width="38" height="38" class="ic-ink" />
+            <text x="46" y="74" class="t-label">Patient</text>
+            <text x="46" y="160" class="t-label">Clinician</text>
+            <text x="46" y="246" class="t-label">Researcher</text>
+            <path class="flow flow--thin" d="M126 70L166 140" />
+            <path class="flow flow--thin" d="M126 155H160" />
+            <path class="flow flow--thin" d="M126 240L166 170" />
+            <circle cx="206" cy="155" r="36" class="disc--white" />
+            <use href="#i-gear" x="180" y="129" width="52" height="52" class="ic-accent" />
+            <text x="206" y="210" class="t-label t-strong t-center">Query engine</text>
+            <text x="206" y="228" class="t-small t-center">SPARQL · Comunica</text>
+            <path class="flow flow--accent draw" pathLength="1" d="M244 155H292" />
+            <text x="206" y="300" class="t-small t-italic t-center">→ part 2</text>
+          </g>
+        </svg>
+      </figure>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Every layer is a web standard: RDF, Solid, ODRL and SPARQL.</span></p>
+      <p class="footnote">
+        <span>Steps 1–2: WP1 · step 3: WP2 · step 4: WP3 of the <a href="https://ecrum19.github.io/eliascrum/talks/fwo-interview" target="_blank" rel="noopener noreferrer">PENGQUIN FWO fellowship proposal</a>.</span>
+        <span><a href="https://solidproject.org/TR/protocol" target="_blank" rel="noopener noreferrer">Solid Protocol</a> · <a href="https://www.w3.org/TR/odrl-model/" target="_blank" rel="noopener noreferrer">W3C ODRL Information Model 2.2 (2018)</a> · <a href="https://doi.org/10.1007/978-3-030-00668-6_15" target="_blank" rel="noopener noreferrer">Comunica (Taelman et al., ISWC 2018)</a>.</span>
+      </p>
+    </section>
+
+    <!-- 1.3 · From a row to linked data ------------------------------------- -->
+    <section id="pengquin-linking" class="slide story" inlist="" rel="schema:hasPart" resource="#pengquin-linking">
+      <p class="eyebrow">1.3 · Genomes as linked data</p>
+      <h2 property="schema:name">From one row of text to a node in a knowledge graph.</h2>
+      <figure class="visual">
+        <svg viewBox="0 0 880 330" role="img" aria-label="The VCF row chr1, 13613, rs879980801, T, A, genotype 0/1 is converted by VCF-RDFizer into a VCF Core record node with chromosome, position, reference allele, alternate allele and genotype as properties. The record is then linked through its rsID to dbSNP. Other linkers connect regions to Ensembl genes and SPDI notation to ClinVar. One genome yields more than 27 million triples.">
+          <g>
+            <rect class="panel" x="0" y="20" width="330" height="96" rx="10" />
+            <text x="16" y="52" class="t-code t-muted">#CHROM</text><text x="72" y="52" class="t-code t-muted">POS</text><text x="128" y="52" class="t-code t-muted">ID</text><text x="232" y="52" class="t-code t-muted">REF</text><text x="266" y="52" class="t-code t-muted">ALT</text><text x="300" y="52" class="t-code t-muted">GT</text>
+            <text x="16" y="86" class="t-code">chr1</text><text x="72" y="86" class="t-code">13613</text><text x="128" y="86" class="t-code">rs879980801</text><text x="232" y="86" class="t-code">T</text><text x="266" y="86" class="t-code">A</text><text x="300" y="86" class="t-code">0/1</text>
+            <text x="0" y="140" class="t-small">one row of ≈ 3 M in a person's VCF<tspan class="fn" dy="-6">1</tspan></text>
+          </g>
+          <g class="next">
+            <path class="flow draw" pathLength="1" d="M340 68H404" />
+            <text x="372" y="58" class="t-small t-center">VCF-RDFizer</text>
+            <rect class="panel--accent" x="412" y="44" width="174" height="50" rx="10" />
+            <text x="499" y="66" class="t-label t-strong t-center">chr1:13613 T&gt;A</text>
+            <text x="499" y="84" class="t-code t-center">vcfc:VCFRecord</text>
+            <path class="kg-edge" d="M470 94L425 150M490 94L510 150M510 94L590 150M528 94L670 150M548 94L745 150" />
+            <rect class="pill" x="390" y="150" width="70" height="28" rx="14" /><text x="425" y="169" class="t-code t-center">"chr1"</text>
+            <rect class="pill" x="470" y="150" width="80" height="28" rx="14" /><text x="510" y="169" class="t-code t-center">13613</text>
+            <rect class="pill" x="565" y="150" width="50" height="28" rx="14" /><text x="590" y="169" class="t-code t-center">"T"</text>
+            <rect class="pill" x="645" y="150" width="50" height="28" rx="14" /><text x="670" y="169" class="t-code t-center">"A"</text>
+            <rect class="pill" x="720" y="150" width="50" height="28" rx="14" /><text x="745" y="169" class="t-code t-center">0/1</text>
+            <text x="425" y="198" class="t-code t-muted t-center">vcfc:chrom</text>
+            <text x="510" y="198" class="t-code t-muted t-center">vcfc:pos</text>
+            <text x="590" y="198" class="t-code t-muted t-center">vcfc:ref</text>
+            <text x="670" y="198" class="t-code t-muted t-center">vcfc:alt</text>
+            <text x="745" y="198" class="t-small t-center">genotype</text>
+            <text x="0" y="250" class="t-big">27 M+</text>
+            <text x="0" y="276" class="t-small">triples for one person's genome<tspan class="fn" dy="-6">2</tspan></text>
+          </g>
+          <g class="next">
+            <path class="flow flow--accent draw" pathLength="1" d="M588 58C660 30 720 30 774 40" />
+            <text x="676" y="26" class="t-small t-center t-accent">rsID link</text>
+            <use href="#i-db" x="784" y="14" width="48" height="48" class="ic-ink" />
+            <text x="808" y="80" class="t-label t-strong t-center">dbSNP</text>
+            <text x="808" y="98" class="t-code t-center">rs879980801</text>
+            <rect class="panel" x="404" y="232" width="476" height="76" rx="12" />
+            <use href="#i-search" x="420" y="248" width="40" height="40" class="ic-ink" />
+            <text x="474" y="262" class="t-label t-strong">More linkers, same idea</text>
+            <text x="474" y="284" class="t-small">region → Ensembl genes · SPDI → ClinVar · your own knowledge graph</text>
+          </g>
+        </svg>
+      </figure>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Once a variant is a node, it can be joined with any other knowledge graph.</span></p>
+      <p class="footnote">
+        <span><sup>1</sup> Record 1 of the <a href="https://github.com/ecrum19/vcf-core-vocabulary/blob/main/examples/core/example.vcf" target="_blank" rel="noopener noreferrer">VCF Core example file</a>, converted with <a href="https://github.com/ecrum19/VCF-RDFizer" target="_blank" rel="noopener noreferrer">VCF-RDFizer</a>; details in part 4.</span>
+        <span><sup>2</sup> Estimate from the <a href="https://ecrum19.github.io/eliascrum/talks/fwo-interview" target="_blank" rel="noopener noreferrer">PENGQUIN FWO fellowship proposal</a>.</span>
+      </p>
+    </section>
+
+    <!-- 1.4 · Policies ------------------------------------------------------- -->
+    <section id="pengquin-policies" class="slide story" inlist="" rel="schema:hasPart" resource="#pengquin-policies">
+      <p class="eyebrow">1.4 · Privacy policies</p>
+      <h2 property="schema:name">Policies travel with the data, down to a single gene.</h2>
+      <figure class="visual">
+        <svg viewBox="0 0 880 330" role="img" aria-label="A patient's genome pod holds variant records grouped by region, including the BRCA1 region on chromosome 17. An ODRL policy prohibits a research app from reading the BRCA1 region, chr17:43,044,295 to 43,125,483 on GRCh38. The clinician receives the full record; the research app receives a release view with the BRCA1 region withheld.">
+          <g>
+            <rect class="panel" x="0" y="14" width="300" height="290" rx="16" />
+            <use href="#i-user" x="18" y="28" width="30" height="30" class="ic-ink" />
+            <text x="58" y="44" class="t-title">Patient's genome pod</text>
+            <text x="58" y="62" class="t-small">variant records by region</text>
+            <rect class="chip" x="18" y="82" width="264" height="34" rx="8" /><text x="34" y="104" class="t-label">chr1 – chr16</text>
+            <rect class="chip--focus" x="18" y="126" width="264" height="44" rx="8" /><text x="34" y="146" class="t-label t-strong">chr17 · BRCA1 region</text><text x="34" y="162" class="t-code t-muted">43,044,295–43,125,483</text>
+            <rect class="chip" x="18" y="180" width="264" height="34" rx="8" /><text x="34" y="202" class="t-label">rest of chr17 – chrX</text>
+            <text x="18" y="288" class="t-small">as RDF, under VCF Core</text>
+          </g>
+          <g class="next">
+            <rect class="panel" x="336" y="40" width="244" height="168" rx="14" />
+            <use href="#i-shield" x="352" y="54" width="34" height="34" class="ic-ink" />
+            <text x="396" y="77" class="t-title">ODRL policy<tspan class="fn" dy="-6">1</tspan></text>
+            <text x="352" y="118" class="t-code t-muted">prohibit</text><text x="430" y="118" class="t-code">read</text>
+            <text x="352" y="144" class="t-code t-muted">target</text><text x="430" y="144" class="t-code">BRCA1 region</text>
+            <text x="430" y="162" class="t-small">GRCh38, chr17</text>
+            <text x="352" y="188" class="t-code t-muted">assignee</text><text x="430" y="188" class="t-code">research app</text>
+            <path class="flow flow--accent flow--thin draw" pathLength="1" d="M336 148H290" />
+          </g>
+          <g class="next">
+            <path class="flow flow--thin" d="M580 96L636 66" />
+            <path class="flow flow--thin" d="M580 160L636 224" />
+            <use href="#i-user" x="640" y="20" width="36" height="36" class="ic-ink" />
+            <text x="684" y="44" class="t-label t-strong">Clinician</text>
+            <rect class="chip" x="684" y="58" width="196" height="16" rx="4" />
+            <rect class="chip" x="684" y="80" width="196" height="16" rx="4" />
+            <rect class="chip" x="684" y="102" width="196" height="16" rx="4" />
+            <text x="684" y="138" class="t-small">full record</text>
+
+            <use href="#i-user" x="640" y="180" width="36" height="36" class="ic-ink" />
+            <text x="684" y="204" class="t-label t-strong">Research app</text>
+            <rect class="chip" x="684" y="218" width="196" height="16" rx="4" />
+            <rect class="chip--withheld" x="684" y="240" width="196" height="16" rx="4" />
+            <text x="782" y="252" class="t-small t-center">BRCA1 region withheld</text>
+            <rect class="chip" x="684" y="262" width="196" height="16" rx="4" />
+            <text x="684" y="298" class="t-small">checked release view</text>
+          </g>
+        </svg>
+      </figure>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Access is decided per gene or region, not per file.</span></p>
+      <p class="footnote">
+        <span><sup>1</sup> <a href="https://www.w3.org/TR/odrl-model/" target="_blank" rel="noopener noreferrer">W3C ODRL Information Model 2.2 (2018)</a>; region selector from the <a href="https://github.com/ecrum19/VCF-RDFizer/blob/main/docs/policy-demonstrator.md" target="_blank" rel="noopener noreferrer">VCF-RDFizer policy demonstrator</a> (BRCA1, GRCh38).</span>
+      </p>
+    </section>
+
+    <!-- 1.5 · Querying ------------------------------------------------------- -->
+    <section id="pengquin-querying" class="slide story" inlist="" rel="schema:hasPart" resource="#pengquin-querying">
+      <p class="eyebrow">1.5 · Querying</p>
+      <h2 property="schema:name">Asking questions over one pod, or thousands.</h2>
+      <figure class="visual">
+        <svg viewBox="0 0 880 330" role="img" aria-label="Three questions reach a SPARQL query engine. A patient asks whether they carry rs879980801, answered from their own pod. A clinician asks which of their patients carry variant Y, answered through an aggregator that points to the relevant pods. A researcher asks, through the GA4GH Beacon API, whether there are consenting patients with variant Z; the same many-pod path is followed and each pod's policies are checked.">
+          <!-- Patient: one pod -->
+          <g>
+            <circle cx="22" cy="40" r="22" class="disc--accent" />
+            <use href="#i-user" x="7" y="25" width="30" height="30" class="ic-ink" />
+            <text x="54" y="36" class="t-label t-strong">Patient</text>
+            <text x="54" y="54" class="t-small t-italic">“Do I carry rs879980801?”<tspan class="fn" dy="-6">1</tspan></text>
+            <path class="flow flow--thin" d="M222 46L388 136" />
+            <circle cx="430" cy="160" r="40" class="disc--white" />
+            <use href="#i-gear" x="402" y="132" width="56" height="56" class="ic-accent" />
+            <g class="halo">
+              <text x="430" y="220" class="t-label t-strong t-center">Query engine</text>
+              <text x="430" y="238" class="t-small t-center">SPARQL · Comunica</text>
+            </g>
+            <path class="flow flow--accent draw" pathLength="1" d="M462 136L694 50" />
+            <rect class="panel" x="700" y="18" width="180" height="58" rx="12" />
+            <use href="#i-user" x="714" y="30" width="28" height="28" class="ic-ink" />
+            <text x="750" y="44" class="t-label t-strong">Own pod</text>
+            <text x="750" y="62" class="t-small">index inside the pod</text>
+          </g>
+          <!-- Clinician: many pods through an aggregator -->
+          <g class="next">
+            <circle cx="22" cy="160" r="22" class="disc--accent" />
+            <use href="#i-user" x="7" y="145" width="30" height="30" class="ic-ink" />
+            <text x="54" y="156" class="t-label t-strong">Clinician</text>
+            <text x="54" y="174" class="t-small t-italic">“Which of my patients carry Y?”</text>
+            <path class="flow flow--thin" d="M258 164H384" />
+            <path class="flow flow--accent draw" pathLength="1" d="M472 166H552" />
+            <rect class="panel--accent" x="558" y="140" width="128" height="54" rx="12" />
+            <text x="622" y="163" class="t-label t-strong t-center">Aggregator</text>
+            <text x="622" y="181" class="t-small t-center">summaries of pods</text>
+            <path class="flow flow--accent flow--thin draw" pathLength="1" d="M688 156L734 122" />
+            <path class="flow flow--accent flow--thin draw" pathLength="1" d="M688 167H734" />
+            <path class="flow flow--accent flow--thin draw" pathLength="1" d="M688 178L734 212" />
+            <rect class="panel" x="740" y="104" width="140" height="34" rx="8" /><use href="#i-user" x="750" y="110" width="22" height="22" class="ic-ink" /><text x="780" y="126" class="t-label">Pod 2</text>
+            <rect class="panel" x="740" y="150" width="140" height="34" rx="8" /><use href="#i-user" x="750" y="156" width="22" height="22" class="ic-ink" /><text x="780" y="172" class="t-label">Pod 3</text>
+            <rect class="panel" x="740" y="196" width="140" height="34" rx="8" /><use href="#i-user" x="750" y="202" width="22" height="22" class="ic-ink" /><text x="780" y="218" class="t-label">… Pod n</text>
+          </g>
+          <!-- Researcher: Beacon API in front, policies checked per pod -->
+          <g class="next">
+            <circle cx="22" cy="280" r="22" class="disc--accent" />
+            <use href="#i-user" x="7" y="265" width="30" height="30" class="ic-ink" />
+            <text x="54" y="276" class="t-label t-strong">Researcher</text>
+            <text x="54" y="294" class="t-small t-italic">“Consenting patients with Z?”</text>
+            <rect class="pill" x="254" y="262" width="104" height="32" rx="16" />
+            <text x="306" y="283" class="t-small t-strong t-center">Beacon API<tspan class="fn" dy="-6">2</tspan></text>
+            <path class="flow flow--thin" d="M240 278H250" />
+            <path class="flow flow--thin" d="M306 262L390 178" />
+            <use href="#i-shield" x="852" y="110" width="22" height="22" class="ic-accent" />
+            <use href="#i-shield" x="852" y="156" width="22" height="22" class="ic-accent" />
+            <use href="#i-shield" x="852" y="202" width="22" height="22" class="ic-accent" />
+            <text x="880" y="252" class="t-small t-end">consent checked by each pod's policy</text>
+          </g>
+        </svg>
+      </figure>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Querying many personal pods is federation; part 2 tests federation in practice.</span></p>
+      <p class="footnote">
+        <span><sup>1</sup> Questions paraphrased from the <a href="https://ecrum19.github.io/eliascrum/talks/fwo-interview" target="_blank" rel="noopener noreferrer">PENGQUIN FWO fellowship proposal</a>; rs879980801 is from the <a href="https://github.com/ecrum19/vcf-core-vocabulary/blob/main/examples/core/example.vcf" target="_blank" rel="noopener noreferrer">VCF Core example file</a>.</span>
+        <span><sup>2</sup> <a href="https://doi.org/10.1002/humu.24369" target="_blank" rel="noopener noreferrer">GA4GH Beacon v2 (Rambla et al., Human Mutation 2022)</a> · <a href="https://doi.org/10.1007/978-3-030-00668-6_15" target="_blank" rel="noopener noreferrer">Comunica (Taelman et al., ISWC 2018)</a>.</span>
+      </p>
+    </section>
+
+    <!-- 02 · Federation ===================================================== -->
+    <section id="part-federation" class="slide section-divider" inlist="" rel="schema:hasPart" resource="#part-federation">
+      <p class="eyebrow">Part 2 of 4</p>
+      <div class="section-divider__body">
+        <div>
+          <div class="section-divider__mark">
+            <span class="section-divider__number">02</span>
+            <svg class="section-divider__logo section-divider__icon" aria-hidden="true"><use href="#i-federation" /></svg>
+          </div>
+          <h2 property="schema:name">Does SPARQL federation work in practice?</h2>
+          <p class="lead">An 18-month study of 67 real federated queries over more than 20 public biological SPARQL endpoints.</p>
+        </div>
+        <div class="section-contents">
+          <span class="note__label">In this part</span>
+          <ol>
+            <li>Finding 1: who picks the sources matters</li>
+            <li>Why algorithmic federation fails</li>
+            <li>Finding 2: decline within one year</li>
+            <li>VoRD: endpoints describe their limits</li>
+            <li>Next: engines that adapt</li>
+          </ol>
+        </div>
       </div>
+      <ol class="section-track" aria-label="Talk progress">
+        <li class="is-done">01 · PENGQUIN</li>
+        <li class="is-current">02 · Federation</li>
+        <li>03 · Ontology Companion</li>
+        <li>04 · Variant data</li>
+      </ol>
+    </section>
+
+    <!-- 2.1 · Finding 1 ------------------------------------------------------ -->
+    <section id="fed-finding-1" class="slide story" inlist="" rel="schema:hasPart" resource="#fed-finding-1">
+      <p class="eyebrow">2.1 · Finding 1</p>
+      <h2 property="schema:name">Algorithmic source selection rarely produced results.</h2>
+      <p class="ex-badge"><svg aria-hidden="true"><use href="#i-federation" /></svg>67 real queries · 20+ public endpoints · one year</p>
+      <figure class="visual">
+        <svg viewBox="0 0 880 340" role="img" aria-label="Out of every 100 executions, manual federation, where the query author names each endpoint with SERVICE, returned a non-empty result 47 times and an explicit error 46 times. Algorithmic federation, where the engine picks the sources, returned a non-empty result 3 times and an explicit error 95 times: about 16 times lower success.">
+          <g>
+            <text x="143" y="20" class="t-title t-center">Manual</text>
+            <text x="143" y="40" class="t-small t-center">author names each endpoint (SERVICE)</text>
+            <g class="waffle waffle--intro"><rect class="cell cell--ok" x="30" y="52" width="19" height="19" rx="3" style="--i:0" /><rect class="cell cell--ok" x="53" y="52" width="19" height="19" rx="3" style="--i:1" /><rect class="cell cell--ok" x="76" y="52" width="19" height="19" rx="3" style="--i:2" /><rect class="cell cell--ok" x="99" y="52" width="19" height="19" rx="3" style="--i:3" /><rect class="cell cell--ok" x="122" y="52" width="19" height="19" rx="3" style="--i:4" /><rect class="cell cell--ok" x="145" y="52" width="19" height="19" rx="3" style="--i:5" /><rect class="cell cell--ok" x="168" y="52" width="19" height="19" rx="3" style="--i:6" /><rect class="cell cell--ok" x="191" y="52" width="19" height="19" rx="3" style="--i:7" /><rect class="cell cell--ok" x="214" y="52" width="19" height="19" rx="3" style="--i:8" /><rect class="cell cell--ok" x="237" y="52" width="19" height="19" rx="3" style="--i:9" /><rect class="cell cell--ok" x="30" y="75" width="19" height="19" rx="3" style="--i:10" /><rect class="cell cell--ok" x="53" y="75" width="19" height="19" rx="3" style="--i:11" /><rect class="cell cell--ok" x="76" y="75" width="19" height="19" rx="3" style="--i:12" /><rect class="cell cell--ok" x="99" y="75" width="19" height="19" rx="3" style="--i:13" /><rect class="cell cell--ok" x="122" y="75" width="19" height="19" rx="3" style="--i:14" /><rect class="cell cell--ok" x="145" y="75" width="19" height="19" rx="3" style="--i:15" /><rect class="cell cell--ok" x="168" y="75" width="19" height="19" rx="3" style="--i:16" /><rect class="cell cell--ok" x="191" y="75" width="19" height="19" rx="3" style="--i:17" /><rect class="cell cell--ok" x="214" y="75" width="19" height="19" rx="3" style="--i:18" /><rect class="cell cell--ok" x="237" y="75" width="19" height="19" rx="3" style="--i:19" /><rect class="cell cell--ok" x="30" y="98" width="19" height="19" rx="3" style="--i:20" /><rect class="cell cell--ok" x="53" y="98" width="19" height="19" rx="3" style="--i:21" /><rect class="cell cell--ok" x="76" y="98" width="19" height="19" rx="3" style="--i:22" /><rect class="cell cell--ok" x="99" y="98" width="19" height="19" rx="3" style="--i:23" /><rect class="cell cell--ok" x="122" y="98" width="19" height="19" rx="3" style="--i:24" /><rect class="cell cell--ok" x="145" y="98" width="19" height="19" rx="3" style="--i:25" /><rect class="cell cell--ok" x="168" y="98" width="19" height="19" rx="3" style="--i:26" /><rect class="cell cell--ok" x="191" y="98" width="19" height="19" rx="3" style="--i:27" /><rect class="cell cell--ok" x="214" y="98" width="19" height="19" rx="3" style="--i:28" /><rect class="cell cell--ok" x="237" y="98" width="19" height="19" rx="3" style="--i:29" /><rect class="cell cell--ok" x="30" y="121" width="19" height="19" rx="3" style="--i:30" /><rect class="cell cell--ok" x="53" y="121" width="19" height="19" rx="3" style="--i:31" /><rect class="cell cell--ok" x="76" y="121" width="19" height="19" rx="3" style="--i:32" /><rect class="cell cell--ok" x="99" y="121" width="19" height="19" rx="3" style="--i:33" /><rect class="cell cell--ok" x="122" y="121" width="19" height="19" rx="3" style="--i:34" /><rect class="cell cell--ok" x="145" y="121" width="19" height="19" rx="3" style="--i:35" /><rect class="cell cell--ok" x="168" y="121" width="19" height="19" rx="3" style="--i:36" /><rect class="cell cell--ok" x="191" y="121" width="19" height="19" rx="3" style="--i:37" /><rect class="cell cell--ok" x="214" y="121" width="19" height="19" rx="3" style="--i:38" /><rect class="cell cell--ok" x="237" y="121" width="19" height="19" rx="3" style="--i:39" /><rect class="cell cell--ok" x="30" y="144" width="19" height="19" rx="3" style="--i:40" /><rect class="cell cell--ok" x="53" y="144" width="19" height="19" rx="3" style="--i:41" /><rect class="cell cell--ok" x="76" y="144" width="19" height="19" rx="3" style="--i:42" /><rect class="cell cell--ok" x="99" y="144" width="19" height="19" rx="3" style="--i:43" /><rect class="cell cell--ok" x="122" y="144" width="19" height="19" rx="3" style="--i:44" /><rect class="cell cell--ok" x="145" y="144" width="19" height="19" rx="3" style="--i:45" /><rect class="cell cell--ok" x="168" y="144" width="19" height="19" rx="3" style="--i:46" /><rect class="cell cell--empty" x="191" y="144" width="19" height="19" rx="3" style="--i:47" /><rect class="cell cell--empty" x="214" y="144" width="19" height="19" rx="3" style="--i:48" /><rect class="cell cell--empty" x="237" y="144" width="19" height="19" rx="3" style="--i:49" /><rect class="cell cell--empty" x="30" y="167" width="19" height="19" rx="3" style="--i:50" /><rect class="cell cell--empty" x="53" y="167" width="19" height="19" rx="3" style="--i:51" /><rect class="cell cell--empty" x="76" y="167" width="19" height="19" rx="3" style="--i:52" /><rect class="cell cell--empty" x="99" y="167" width="19" height="19" rx="3" style="--i:53" /><rect class="cell cell--error" x="122" y="167" width="19" height="19" rx="3" style="--i:54" /><rect class="cell cell--error" x="145" y="167" width="19" height="19" rx="3" style="--i:55" /><rect class="cell cell--error" x="168" y="167" width="19" height="19" rx="3" style="--i:56" /><rect class="cell cell--error" x="191" y="167" width="19" height="19" rx="3" style="--i:57" /><rect class="cell cell--error" x="214" y="167" width="19" height="19" rx="3" style="--i:58" /><rect class="cell cell--error" x="237" y="167" width="19" height="19" rx="3" style="--i:59" /><rect class="cell cell--error" x="30" y="190" width="19" height="19" rx="3" style="--i:60" /><rect class="cell cell--error" x="53" y="190" width="19" height="19" rx="3" style="--i:61" /><rect class="cell cell--error" x="76" y="190" width="19" height="19" rx="3" style="--i:62" /><rect class="cell cell--error" x="99" y="190" width="19" height="19" rx="3" style="--i:63" /><rect class="cell cell--error" x="122" y="190" width="19" height="19" rx="3" style="--i:64" /><rect class="cell cell--error" x="145" y="190" width="19" height="19" rx="3" style="--i:65" /><rect class="cell cell--error" x="168" y="190" width="19" height="19" rx="3" style="--i:66" /><rect class="cell cell--error" x="191" y="190" width="19" height="19" rx="3" style="--i:67" /><rect class="cell cell--error" x="214" y="190" width="19" height="19" rx="3" style="--i:68" /><rect class="cell cell--error" x="237" y="190" width="19" height="19" rx="3" style="--i:69" /><rect class="cell cell--error" x="30" y="213" width="19" height="19" rx="3" style="--i:70" /><rect class="cell cell--error" x="53" y="213" width="19" height="19" rx="3" style="--i:71" /><rect class="cell cell--error" x="76" y="213" width="19" height="19" rx="3" style="--i:72" /><rect class="cell cell--error" x="99" y="213" width="19" height="19" rx="3" style="--i:73" /><rect class="cell cell--error" x="122" y="213" width="19" height="19" rx="3" style="--i:74" /><rect class="cell cell--error" x="145" y="213" width="19" height="19" rx="3" style="--i:75" /><rect class="cell cell--error" x="168" y="213" width="19" height="19" rx="3" style="--i:76" /><rect class="cell cell--error" x="191" y="213" width="19" height="19" rx="3" style="--i:77" /><rect class="cell cell--error" x="214" y="213" width="19" height="19" rx="3" style="--i:78" /><rect class="cell cell--error" x="237" y="213" width="19" height="19" rx="3" style="--i:79" /><rect class="cell cell--error" x="30" y="236" width="19" height="19" rx="3" style="--i:80" /><rect class="cell cell--error" x="53" y="236" width="19" height="19" rx="3" style="--i:81" /><rect class="cell cell--error" x="76" y="236" width="19" height="19" rx="3" style="--i:82" /><rect class="cell cell--error" x="99" y="236" width="19" height="19" rx="3" style="--i:83" /><rect class="cell cell--error" x="122" y="236" width="19" height="19" rx="3" style="--i:84" /><rect class="cell cell--error" x="145" y="236" width="19" height="19" rx="3" style="--i:85" /><rect class="cell cell--error" x="168" y="236" width="19" height="19" rx="3" style="--i:86" /><rect class="cell cell--error" x="191" y="236" width="19" height="19" rx="3" style="--i:87" /><rect class="cell cell--error" x="214" y="236" width="19" height="19" rx="3" style="--i:88" /><rect class="cell cell--error" x="237" y="236" width="19" height="19" rx="3" style="--i:89" /><rect class="cell cell--error" x="30" y="259" width="19" height="19" rx="3" style="--i:90" /><rect class="cell cell--error" x="53" y="259" width="19" height="19" rx="3" style="--i:91" /><rect class="cell cell--error" x="76" y="259" width="19" height="19" rx="3" style="--i:92" /><rect class="cell cell--error" x="99" y="259" width="19" height="19" rx="3" style="--i:93" /><rect class="cell cell--error" x="122" y="259" width="19" height="19" rx="3" style="--i:94" /><rect class="cell cell--error" x="145" y="259" width="19" height="19" rx="3" style="--i:95" /><rect class="cell cell--error" x="168" y="259" width="19" height="19" rx="3" style="--i:96" /><rect class="cell cell--error" x="191" y="259" width="19" height="19" rx="3" style="--i:97" /><rect class="cell cell--error" x="214" y="259" width="19" height="19" rx="3" style="--i:98" /><rect class="cell cell--error" x="237" y="259" width="19" height="19" rx="3" style="--i:99" /></g>
+            <text x="143" y="304" class="t-mid t-center">47 / 100 non-empty</text>
+            <rect x="30" y="320" width="16" height="16" rx="3" class="cell--ok" />
+            <text x="53" y="333" class="t-label">non-empty result</text>
+            <rect x="200" y="320" width="16" height="16" rx="3" class="cell--empty" />
+            <text x="223" y="333" class="t-label">empty result</text>
+            <rect x="350" y="320" width="16" height="16" rx="3" class="cell--error" />
+            <text x="373" y="333" class="t-label">explicit error</text>
+          </g>
+          <g class="next">
+            <text x="413" y="20" class="t-title t-center">Algorithmic</text>
+            <text x="413" y="40" class="t-small t-center">engine picks the sources itself</text>
+            <g class="waffle"><rect class="cell cell--ok" x="300" y="52" width="19" height="19" rx="3" style="--i:0" /><rect class="cell cell--ok" x="323" y="52" width="19" height="19" rx="3" style="--i:1" /><rect class="cell cell--ok" x="346" y="52" width="19" height="19" rx="3" style="--i:2" /><rect class="cell cell--empty" x="369" y="52" width="19" height="19" rx="3" style="--i:3" /><rect class="cell cell--empty" x="392" y="52" width="19" height="19" rx="3" style="--i:4" /><rect class="cell cell--error" x="415" y="52" width="19" height="19" rx="3" style="--i:5" /><rect class="cell cell--error" x="438" y="52" width="19" height="19" rx="3" style="--i:6" /><rect class="cell cell--error" x="461" y="52" width="19" height="19" rx="3" style="--i:7" /><rect class="cell cell--error" x="484" y="52" width="19" height="19" rx="3" style="--i:8" /><rect class="cell cell--error" x="507" y="52" width="19" height="19" rx="3" style="--i:9" /><rect class="cell cell--error" x="300" y="75" width="19" height="19" rx="3" style="--i:10" /><rect class="cell cell--error" x="323" y="75" width="19" height="19" rx="3" style="--i:11" /><rect class="cell cell--error" x="346" y="75" width="19" height="19" rx="3" style="--i:12" /><rect class="cell cell--error" x="369" y="75" width="19" height="19" rx="3" style="--i:13" /><rect class="cell cell--error" x="392" y="75" width="19" height="19" rx="3" style="--i:14" /><rect class="cell cell--error" x="415" y="75" width="19" height="19" rx="3" style="--i:15" /><rect class="cell cell--error" x="438" y="75" width="19" height="19" rx="3" style="--i:16" /><rect class="cell cell--error" x="461" y="75" width="19" height="19" rx="3" style="--i:17" /><rect class="cell cell--error" x="484" y="75" width="19" height="19" rx="3" style="--i:18" /><rect class="cell cell--error" x="507" y="75" width="19" height="19" rx="3" style="--i:19" /><rect class="cell cell--error" x="300" y="98" width="19" height="19" rx="3" style="--i:20" /><rect class="cell cell--error" x="323" y="98" width="19" height="19" rx="3" style="--i:21" /><rect class="cell cell--error" x="346" y="98" width="19" height="19" rx="3" style="--i:22" /><rect class="cell cell--error" x="369" y="98" width="19" height="19" rx="3" style="--i:23" /><rect class="cell cell--error" x="392" y="98" width="19" height="19" rx="3" style="--i:24" /><rect class="cell cell--error" x="415" y="98" width="19" height="19" rx="3" style="--i:25" /><rect class="cell cell--error" x="438" y="98" width="19" height="19" rx="3" style="--i:26" /><rect class="cell cell--error" x="461" y="98" width="19" height="19" rx="3" style="--i:27" /><rect class="cell cell--error" x="484" y="98" width="19" height="19" rx="3" style="--i:28" /><rect class="cell cell--error" x="507" y="98" width="19" height="19" rx="3" style="--i:29" /><rect class="cell cell--error" x="300" y="121" width="19" height="19" rx="3" style="--i:30" /><rect class="cell cell--error" x="323" y="121" width="19" height="19" rx="3" style="--i:31" /><rect class="cell cell--error" x="346" y="121" width="19" height="19" rx="3" style="--i:32" /><rect class="cell cell--error" x="369" y="121" width="19" height="19" rx="3" style="--i:33" /><rect class="cell cell--error" x="392" y="121" width="19" height="19" rx="3" style="--i:34" /><rect class="cell cell--error" x="415" y="121" width="19" height="19" rx="3" style="--i:35" /><rect class="cell cell--error" x="438" y="121" width="19" height="19" rx="3" style="--i:36" /><rect class="cell cell--error" x="461" y="121" width="19" height="19" rx="3" style="--i:37" /><rect class="cell cell--error" x="484" y="121" width="19" height="19" rx="3" style="--i:38" /><rect class="cell cell--error" x="507" y="121" width="19" height="19" rx="3" style="--i:39" /><rect class="cell cell--error" x="300" y="144" width="19" height="19" rx="3" style="--i:40" /><rect class="cell cell--error" x="323" y="144" width="19" height="19" rx="3" style="--i:41" /><rect class="cell cell--error" x="346" y="144" width="19" height="19" rx="3" style="--i:42" /><rect class="cell cell--error" x="369" y="144" width="19" height="19" rx="3" style="--i:43" /><rect class="cell cell--error" x="392" y="144" width="19" height="19" rx="3" style="--i:44" /><rect class="cell cell--error" x="415" y="144" width="19" height="19" rx="3" style="--i:45" /><rect class="cell cell--error" x="438" y="144" width="19" height="19" rx="3" style="--i:46" /><rect class="cell cell--error" x="461" y="144" width="19" height="19" rx="3" style="--i:47" /><rect class="cell cell--error" x="484" y="144" width="19" height="19" rx="3" style="--i:48" /><rect class="cell cell--error" x="507" y="144" width="19" height="19" rx="3" style="--i:49" /><rect class="cell cell--error" x="300" y="167" width="19" height="19" rx="3" style="--i:50" /><rect class="cell cell--error" x="323" y="167" width="19" height="19" rx="3" style="--i:51" /><rect class="cell cell--error" x="346" y="167" width="19" height="19" rx="3" style="--i:52" /><rect class="cell cell--error" x="369" y="167" width="19" height="19" rx="3" style="--i:53" /><rect class="cell cell--error" x="392" y="167" width="19" height="19" rx="3" style="--i:54" /><rect class="cell cell--error" x="415" y="167" width="19" height="19" rx="3" style="--i:55" /><rect class="cell cell--error" x="438" y="167" width="19" height="19" rx="3" style="--i:56" /><rect class="cell cell--error" x="461" y="167" width="19" height="19" rx="3" style="--i:57" /><rect class="cell cell--error" x="484" y="167" width="19" height="19" rx="3" style="--i:58" /><rect class="cell cell--error" x="507" y="167" width="19" height="19" rx="3" style="--i:59" /><rect class="cell cell--error" x="300" y="190" width="19" height="19" rx="3" style="--i:60" /><rect class="cell cell--error" x="323" y="190" width="19" height="19" rx="3" style="--i:61" /><rect class="cell cell--error" x="346" y="190" width="19" height="19" rx="3" style="--i:62" /><rect class="cell cell--error" x="369" y="190" width="19" height="19" rx="3" style="--i:63" /><rect class="cell cell--error" x="392" y="190" width="19" height="19" rx="3" style="--i:64" /><rect class="cell cell--error" x="415" y="190" width="19" height="19" rx="3" style="--i:65" /><rect class="cell cell--error" x="438" y="190" width="19" height="19" rx="3" style="--i:66" /><rect class="cell cell--error" x="461" y="190" width="19" height="19" rx="3" style="--i:67" /><rect class="cell cell--error" x="484" y="190" width="19" height="19" rx="3" style="--i:68" /><rect class="cell cell--error" x="507" y="190" width="19" height="19" rx="3" style="--i:69" /><rect class="cell cell--error" x="300" y="213" width="19" height="19" rx="3" style="--i:70" /><rect class="cell cell--error" x="323" y="213" width="19" height="19" rx="3" style="--i:71" /><rect class="cell cell--error" x="346" y="213" width="19" height="19" rx="3" style="--i:72" /><rect class="cell cell--error" x="369" y="213" width="19" height="19" rx="3" style="--i:73" /><rect class="cell cell--error" x="392" y="213" width="19" height="19" rx="3" style="--i:74" /><rect class="cell cell--error" x="415" y="213" width="19" height="19" rx="3" style="--i:75" /><rect class="cell cell--error" x="438" y="213" width="19" height="19" rx="3" style="--i:76" /><rect class="cell cell--error" x="461" y="213" width="19" height="19" rx="3" style="--i:77" /><rect class="cell cell--error" x="484" y="213" width="19" height="19" rx="3" style="--i:78" /><rect class="cell cell--error" x="507" y="213" width="19" height="19" rx="3" style="--i:79" /><rect class="cell cell--error" x="300" y="236" width="19" height="19" rx="3" style="--i:80" /><rect class="cell cell--error" x="323" y="236" width="19" height="19" rx="3" style="--i:81" /><rect class="cell cell--error" x="346" y="236" width="19" height="19" rx="3" style="--i:82" /><rect class="cell cell--error" x="369" y="236" width="19" height="19" rx="3" style="--i:83" /><rect class="cell cell--error" x="392" y="236" width="19" height="19" rx="3" style="--i:84" /><rect class="cell cell--error" x="415" y="236" width="19" height="19" rx="3" style="--i:85" /><rect class="cell cell--error" x="438" y="236" width="19" height="19" rx="3" style="--i:86" /><rect class="cell cell--error" x="461" y="236" width="19" height="19" rx="3" style="--i:87" /><rect class="cell cell--error" x="484" y="236" width="19" height="19" rx="3" style="--i:88" /><rect class="cell cell--error" x="507" y="236" width="19" height="19" rx="3" style="--i:89" /><rect class="cell cell--error" x="300" y="259" width="19" height="19" rx="3" style="--i:90" /><rect class="cell cell--error" x="323" y="259" width="19" height="19" rx="3" style="--i:91" /><rect class="cell cell--error" x="346" y="259" width="19" height="19" rx="3" style="--i:92" /><rect class="cell cell--error" x="369" y="259" width="19" height="19" rx="3" style="--i:93" /><rect class="cell cell--error" x="392" y="259" width="19" height="19" rx="3" style="--i:94" /><rect class="cell cell--error" x="415" y="259" width="19" height="19" rx="3" style="--i:95" /><rect class="cell cell--error" x="438" y="259" width="19" height="19" rx="3" style="--i:96" /><rect class="cell cell--error" x="461" y="259" width="19" height="19" rx="3" style="--i:97" /><rect class="cell cell--error" x="484" y="259" width="19" height="19" rx="3" style="--i:98" /><rect class="cell cell--error" x="507" y="259" width="19" height="19" rx="3" style="--i:99" /></g>
+            <text x="413" y="304" class="t-mid t-center">3 / 100 non-empty</text>
+          </g>
+          <g class="next">
+            <rect class="panel--accent" x="592" y="20" width="288" height="270" rx="16" />
+            <text x="616" y="78" class="t-big" style="font-size: 40px">≈ 16×</text>
+            <text x="616" y="102" class="t-label">lower success rate when the</text>
+            <text x="616" y="121" class="t-label">engine picks the sources</text>
+            <path d="M616 140H856" class="grid" />
+            <text x="616" y="190" class="t-big" style="font-size: 40px">95%</text>
+            <text x="616" y="214" class="t-label">of algorithmic executions</text>
+            <text x="616" y="233" class="t-label">ended in an explicit error</text>
+            <path d="M616 250H856" class="grid" />
+            <text x="616" y="274" class="t-small">Spring 2026: 10 vs. 0 of 67 queries answered</text>
+          </g>
+        </svg>
+      </figure>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Algorithmic federation was far less reliable than manual federation.</span></p>
+      <p class="footnote">
+        <span>All runs, Spring 2025 – Spring 2026: manual 47.3% non-empty / 46.2% explicit errors · algorithmic 3.0% / 95.1%; rounded to whole squares.</span>
+        <span>Source: <a href="https://ecrum19.github.io/eliascrum/publications/real-world-federation-iswc-2026/paper" target="_blank" rel="noopener noreferrer">Crum et al., ISWC 2026</a> · every query and run: <a href="https://ecrum19.github.io/fed-survey-results/" target="_blank" rel="noopener noreferrer">results explorer</a> · study set-up: <a href="#supp-federation">S2</a>.</span>
+      </p>
+    </section>
+
+    <!-- 2.2 · Why it fails ---------------------------------------------------- -->
+    <section id="fed-why-fail" class="slide story" inlist="" rel="schema:hasPart" resource="#fed-why-fail">
+      <p class="eyebrow">2.2 · Why it fails</p>
+      <h2 property="schema:name">Probing every source exceeds what endpoints can serve.</h2>
+      <figure class="visual">
+        <svg viewBox="0 0 880 330" role="img" aria-label="Two failure modes: requests are rejected with HTTP 403 after only 3 to 6 requests, or the engine sends 924,299 requests for one query without a result. Most of the 1,027 explicit errors were rejected requests. Naive client-side throttling and back-off did not improve success rates.">
+          <g>
+            <rect class="panel" x="0" y="0" width="425" height="204" rx="16" />
+            <text x="22" y="34" class="t-title">Requests rejected early</text>
+            <use href="#i-gear" x="28" y="56" width="58" height="58" class="ic-muted" />
+            <path class="flow flow--thin" d="M98 72H252" />
+            <path class="flow flow--thin" d="M98 85H252" />
+            <path class="flow flow--thin" d="M98 98H252" />
+            <path class="flow flow--thin flow--plain" d="M98 111H170" stroke-dasharray="4 4" />
+            <use href="#i-server" x="262" y="52" width="66" height="66" class="ic-ink" />
+            <rect class="tag-ink" x="318" y="42" width="50" height="26" rx="6" />
+            <text x="343" y="61" class="t-label t-strong t-center t-white">403</text>
+            <text x="22" y="160"><tspan class="t-big" style="font-size: 40px">3–6</tspan><tspan class="t-mid" dx="10">requests</tspan></text>
+            <text x="22" y="184" class="t-label">before the endpoint replies <tspan class="t-strong">“403 Forbidden”</tspan></text>
+          </g>
+          <g class="next">
+            <rect class="panel" x="455" y="0" width="425" height="204" rx="16" />
+            <text x="477" y="34" class="t-title">Request explosion</text>
+            <use href="#i-gear" x="483" y="56" width="58" height="58" class="ic-muted" />
+            <path class="flow flow--thin flow--plain draw" pathLength="1" d="M553 85L706 54" />
+            <path class="flow flow--thin flow--plain draw" pathLength="1" d="M553 85L706 63" />
+            <path class="flow flow--thin flow--plain draw" pathLength="1" d="M553 85L706 72" />
+            <path class="flow flow--thin flow--plain draw" pathLength="1" d="M553 85L706 81" />
+            <path class="flow flow--thin flow--plain draw" pathLength="1" d="M553 85L706 90" />
+            <path class="flow flow--thin flow--plain draw" pathLength="1" d="M553 85L706 99" />
+            <path class="flow flow--thin flow--plain draw" pathLength="1" d="M553 85L706 108" />
+            <path class="flow flow--thin flow--plain draw" pathLength="1" d="M553 85L706 117" />
+            <use href="#i-server" x="716" y="52" width="66" height="66" class="ic-ink" />
+            <circle cx="790" cy="54" r="15" class="disc--accent" />
+            <use href="#i-bolt" x="778" y="42" width="24" height="24" class="ic-ink" />
+            <text x="477" y="160"><tspan class="t-big" style="font-size: 40px">924,299</tspan><tspan class="t-mid" dx="10">requests</tspan></text>
+            <text x="477" y="184" class="t-label">for a single query, <tspan class="t-strong">without a result</tspan><tspan class="fn" dy="-6">1</tspan></text>
+          </g>
+          <g class="next">
+            <text x="0" y="238" class="t-label t-strong">What the 1,027 explicit errors were</text>
+            <rect class="seg--refused" x="0" y="250" width="318" height="40" rx="4" />
+            <rect class="seg--server" x="321" y="250" width="117" height="40" rx="4" />
+            <rect class="seg--other" x="441" y="250" width="119" height="40" rx="4" />
+            <text x="12" y="275" class="t-label t-strong t-white">Rejected requests (4xx) · 577</text>
+            <text x="333" y="275" class="t-label t-strong t-white">5xx · 222</text>
+            <text x="453" y="275" class="t-label t-strong">Other · 228</text>
+            <text x="0" y="314" class="t-small">other = transport-level failures, malformed responses, time-outs</text>
+          </g>
+          <g class="next">
+            <rect class="panel--accent" x="592" y="222" width="288" height="96" rx="14" />
+            <use href="#i-clock" x="610" y="240" width="40" height="40" class="ic-ink" />
+            <text x="662" y="256" class="t-label t-strong">Naive back-off?</text>
+            <text x="662" y="276" class="t-label">No improvement<tspan class="fn" dy="-6">2</tspan></text>
+            <text x="610" y="304" class="t-small">by Spring 2026 every configuration failed</text>
+          </g>
+        </svg>
+      </figure>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Engines that plan blind cannot adapt to limits they cannot see.</span></p>
+      <p class="footnote">
+        <span><sup>1</sup> One algorithmic run of <em class="qname">query 6</em>, before it failed.</span>
+        <span><sup>2</sup> Runs with and without client-side rate-limit mitigation had similar success rates (<a href="https://ecrum19.github.io/eliascrum/publications/real-world-federation-iswc-2026/paper" target="_blank" rel="noopener noreferrer">Crum et al., ISWC 2026</a>, Sec. 5.4).</span>
+      </p>
+    </section>
+
+    <!-- 2.3 · Finding 2 ------------------------------------------------------ -->
+    <section id="fed-finding-2" class="slide story" inlist="" rel="schema:hasPart" resource="#fed-finding-2">
+      <p class="eyebrow">2.3 · Finding 2</p>
+      <h2 property="schema:name">Over one year, both approaches answered fewer queries.</h2>
+      <figure class="visual">
+        <svg viewBox="0 0 880 330" role="img" aria-label="Queries answered out of 67. Manual federation fell from about 38 in Spring 2025 to 10 in Spring 2026. Algorithmic federation fell from 5 in Fall 2025 to 0 in Spring 2026. Over the same year an endpoint migrated (DBGI/EMI to METRIN-KG, 14 of 67 queries), a temporary federation server was retired, and UniProt updated its usage policies as traffic, including AI crawlers, grew. Two in three queries returned a different number of results from run to run.">
+          <g>
+            <rect class="band" x="155" y="8" width="120" height="272" />
+            <rect class="band" x="395" y="8" width="120" height="272" />
+            <path class="grid" d="M35 200H515M35 120H515M35 40H515" />
+            <path class="grid" d="M35 12H515" stroke-dasharray="4 4" />
+            <text x="510" y="26" class="t-small t-end">all 67 queries</text>
+            <text x="28" y="285" class="t-small t-end">0</text>
+            <text x="28" y="205" class="t-small t-end">20</text>
+            <text x="28" y="125" class="t-small t-end">40</text>
+            <text x="28" y="45" class="t-small t-end">60</text>
+            <path class="axis" d="M35 280H515" />
+            <text x="95" y="304" class="t-label t-strong t-center">Spring 2025</text>
+            <text x="215" y="304" class="t-label t-strong t-center">Fall 2025</text>
+            <text x="335" y="304" class="t-label t-strong t-center">Winter 2026</text>
+            <text x="455" y="304" class="t-label t-strong t-center">Spring 2026</text>
+            <circle class="dot-manual dot-run" cx="81" cy="120" r="5" />
+            <circle class="dot-manual dot-run" cx="95" cy="160" r="5" />
+            <circle class="dot-manual dot-run" cx="109" cy="108" r="5" />
+            <circle class="dot-manual dot-avg" cx="95" cy="129.3" r="9" />
+            <text x="118" y="96" class="t-label t-strong">Manual</text>
+          </g>
+          <g class="next">
+            <circle class="dot-algo dot-run" cx="197" cy="264" r="4" />
+            <circle class="dot-algo dot-run" cx="209" cy="260" r="4" />
+            <circle class="dot-algo dot-run" cx="221" cy="256" r="4" />
+            <circle class="dot-algo dot-run" cx="233" cy="260" r="4" />
+            <circle class="dot-algo dot-run" cx="311" cy="256" r="4" />
+            <circle class="dot-algo dot-run" cx="319" cy="272" r="4" />
+            <circle class="dot-algo dot-run" cx="327" cy="280" r="4" />
+            <circle class="dot-algo dot-run" cx="335" cy="280" r="4" />
+            <circle class="dot-algo dot-run" cx="343" cy="276" r="4" />
+            <circle class="dot-algo dot-run" cx="351" cy="280" r="4" />
+            <circle class="dot-algo dot-run" cx="359" cy="280" r="4" />
+            <circle class="dot-algo dot-run" cx="410" cy="280" r="4" />
+            <circle class="dot-algo dot-run" cx="420" cy="280" r="4" />
+            <circle class="dot-algo dot-run" cx="430" cy="280" r="4" />
+            <circle class="dot-algo dot-run" cx="440" cy="280" r="4" />
+            <circle class="dot-algo dot-run" cx="450" cy="280" r="4" />
+            <circle class="dot-algo dot-run" cx="460" cy="280" r="4" />
+            <circle class="dot-algo dot-run" cx="470" cy="280" r="4" />
+            <circle class="dot-algo dot-run" cx="480" cy="280" r="4" />
+            <circle class="dot-algo dot-run" cx="490" cy="280" r="4" />
+            <circle class="dot-algo dot-run" cx="500" cy="280" r="4" />
+            <path class="series-algo draw" pathLength="1" d="M215 260L335 274.9L455 280" />
+            <circle class="dot-algo dot-avg" cx="215" cy="260" r="8" />
+            <circle class="dot-algo dot-avg" cx="335" cy="274.9" r="8" />
+            <circle class="dot-algo dot-avg" cx="455" cy="280" r="8" />
+            <text x="44" y="232" class="t-label t-strong">Algorithmic</text>
+            <text x="44" y="256" class="t-mid">5 → 0</text>
+          </g>
+          <g class="next">
+            <path class="series-manual" d="M95 129.3L455 240" />
+            <circle class="dot-manual dot-avg" cx="455" cy="240" r="9" />
+            <text x="300" y="148" class="t-mid">38 → 10</text>
+          </g>
+          <g class="next">
+            <text x="548" y="18" class="t-label t-strong">Meanwhile, endpoints evolved</text>
+            <rect class="panel" x="548" y="30" width="332" height="66" rx="12" />
+            <circle cx="580" cy="63" r="20" class="disc--accent" /><use href="#i-move" x="567" y="50" width="26" height="26" class="ic-ink" />
+            <text x="612" y="58" class="t-label t-strong">Endpoint migrated</text>
+            <text x="612" y="78" class="t-small">DBGI/EMI → METRIN-KG · 14 of 67 queries</text>
+            <rect class="panel" x="548" y="106" width="332" height="66" rx="12" />
+            <circle cx="580" cy="139" r="20" class="disc--accent" /><use href="#i-power" x="567" y="126" width="26" height="26" class="ic-ink" />
+            <text x="612" y="134" class="t-label t-strong">Service retired</text>
+            <text x="612" y="154" class="t-small">temporary federation server · Sep → Nov 2025</text>
+            <rect class="panel" x="548" y="182" width="332" height="66" rx="12" />
+            <circle cx="580" cy="215" r="20" class="disc--accent" /><use href="#i-shield" x="567" y="202" width="26" height="26" class="ic-ink" />
+            <text x="612" y="210" class="t-label t-strong">Usage policies updated</text>
+            <text x="612" y="230" class="t-small">UniProt, as traffic incl. AI crawlers grew<tspan class="fn" dy="-6">1</tspan></text>
+            <text x="548" y="282" class="t-mid">2 in 3</text>
+            <text x="630" y="276" class="t-small">queries gave different result</text>
+            <text x="630" y="292" class="t-small">counts from run to run</text>
+          </g>
+        </svg>
+      </figure>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Public endpoints evolve as a matter of course; federated queries must be robust to it.</span></p>
+      <p class="footnote">
+        <span>Small dots = individual runs (25); large dots = period average. Manual runs: Spring 2025 and Spring 2026; algorithmic runs from Fall 2025 on.</span>
+        <span><sup>1</sup> As reported by UniProt's server administrator; 68.7% of queries varied in result count (<a href="https://ecrum19.github.io/eliascrum/publications/real-world-federation-iswc-2026/paper" target="_blank" rel="noopener noreferrer">Crum et al., ISWC 2026</a>, Sec. 5).</span>
+      </p>
+    </section>
+
+    <!-- 2.4 · VoRD ----------------------------------------------------------- -->
+    <section id="fed-vord" class="slide story" inlist="" rel="schema:hasPart" resource="#fed-vord">
+      <p class="eyebrow">2.4 · Moving forward</p>
+      <h2 property="schema:name">VoRD: endpoints describe their limits, machine-readably.</h2>
+      <figure class="visual">
+        <svg viewBox="0 0 880 330" role="img" aria-label="An endpoint maintainer publishes a VoRD description of its limits, for example Wikidata: at most 10 requests per minute for anonymous clients, 200 with a User-Agent, 2,000 for established users, and 3 parallel requests per IP. Federation engines can then plan within the limits, and users know the limits before querying. This interrupts the cycle of uninformed probing, rejections and retries.">
+          <g>
+            <circle cx="96" cy="72" r="44" class="disc--accent" />
+            <use href="#i-server" x="70" y="46" width="52" height="52" class="ic-ink" />
+            <text x="96" y="142" class="t-title t-center">Endpoint</text>
+            <text x="96" y="164" class="t-title t-center">maintainer</text>
+            <text x="96" y="186" class="t-small t-center">describes its limits once,</text>
+            <text x="96" y="202" class="t-small t-center">next to its SPARQL endpoint</text>
+            <path class="flow flow--accent" d="M188 128H226" />
+            <rect class="panel" x="232" y="8" width="356" height="250" rx="14" />
+            <path d="M232 22a14 14 0 0 1 14-14h328a14 14 0 0 1 14 14v22H232z" class="panel--accent" />
+            <text x="248" y="32" class="t-label t-strong">query.wikidata.org/sparql</text>
+            <text x="572" y="32" class="t-small t-end">VoRD description<tspan class="fn" dy="-6">1</tspan></text>
+            <circle cx="268" cy="68" r="15" class="disc--accent" />
+            <use href="#i-clock" x="256" y="56" width="24" height="24" class="ic-ink" />
+            <text x="294" y="64" class="t-label t-strong">Anonymous clients</text>
+            <text x="294" y="82" class="t-small">≤ 10 requests / min → HTTP 429 + Retry-After</text>
+            <circle cx="268" cy="112" r="15" class="disc--accent" />
+            <use href="#i-users" x="256" y="100" width="24" height="24" class="ic-ink" />
+            <text x="294" y="108" class="t-label t-strong">With a User-Agent</text>
+            <text x="294" y="126" class="t-small">≤ 200 requests / min</text>
+            <circle cx="268" cy="156" r="15" class="disc--accent" />
+            <use href="#i-shield" x="256" y="144" width="24" height="24" class="ic-ink" />
+            <text x="294" y="152" class="t-label t-strong">Established users</text>
+            <text x="294" y="170" class="t-small">≤ 2,000 requests / min</text>
+            <circle cx="268" cy="200" r="15" class="disc--accent" />
+            <use href="#i-bolt" x="256" y="188" width="24" height="24" class="ic-ink" />
+            <text x="294" y="196" class="t-label t-strong">Parallel requests</text>
+            <text x="294" y="214" class="t-small">≤ 3 at once per IP (guidance) → HTTP 503</text>
+            <path d="M248 222H572" class="grid" />
+            <text x="248" y="237" class="t-code t-muted" style="font-size: 10.5px">ex:anonymous a vord:RateRestriction ;</text>
+            <text x="248" y="251" class="t-code t-muted" style="font-size: 10.5px">  vord:maxValue 10 ; vord:windowDuration "PT1M" .</text>
+          </g>
+          <g class="next">
+            <path class="flow draw" pathLength="1" d="M592 96L640 72" />
+            <path class="flow draw" pathLength="1" d="M592 170L640 194" />
+            <circle cx="680" cy="64" r="34" class="disc--accent" />
+            <use href="#i-gear" x="660" y="44" width="40" height="40" class="ic-ink" />
+            <text x="726" y="54" class="t-title">Federation</text>
+            <text x="726" y="74" class="t-title">engines</text>
+            <text x="726" y="94" class="t-small">plan requests within the limits</text>
+            <text x="726" y="110" class="t-small">and adapt before reaching them</text>
+            <circle cx="680" cy="196" r="34" class="disc--accent" />
+            <use href="#i-user" x="660" y="176" width="40" height="40" class="ic-ink" />
+            <text x="726" y="190" class="t-title">Users</text>
+            <text x="726" y="210" class="t-small">know the limits before querying,</text>
+            <text x="726" y="226" class="t-small">and why a request was rejected</text>
+          </g>
+          <g class="next">
+            <rect class="panel--accent" x="0" y="276" width="880" height="48" rx="12" />
+            <text x="440" y="306" class="t-label t-center"><tspan class="t-strong">Interrupts the cycle:</tspan> informed planning → fewer rejections → fewer retries</text>
+          </g>
+        </svg>
+      </figure>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>If endpoints publish their limits, engines and users can stay within them.</span></p>
+      <p class="footnote">
+        <span><sup>1</sup> <a href="https://ecrum19.github.io/vord/" target="_blank" rel="noopener noreferrer">VoRD, Vocabulary of Restrictive Datasets (v0.2)</a>; extends <a href="https://www.w3.org/TR/sparql11-service-description/" target="_blank" rel="noopener noreferrer">SPARQL 1.1 Service Description</a>; validated with SHACL and ShEx; its documentation site is built with the Ontology Companion Generator (part 3).</span>
+        <span>Card values: <a href="https://github.com/ecrum19/vord/blob/main/examples/wikidata-rate-restrictions.ttl" target="_blank" rel="noopener noreferrer">VoRD's Wikidata example</a>, derived from Wikimedia's public rate-limit documentation (May 2026).</span>
+      </p>
+    </section>
+
+    <!-- 2.5 · Adaptive engines ----------------------------------------------- -->
+    <section id="fed-adaptive" class="slide story" inlist="" rel="schema:hasPart" resource="#fed-adaptive">
+      <p class="eyebrow">2.5 · Next steps</p>
+      <h2 property="schema:name">Next: query engines that read the limits and adapt.</h2>
+      <figure class="visual">
+        <svg viewBox="0 0 880 330" role="img" aria-label="Today, engines plan without knowing endpoint limits: they probe every source, back off naively after rejections, and still end in errors 95% of the time. Next, an adaptive engine runs a loop: read the limits from VoRD, plan within a request budget per endpoint, execute with pacing that respects parallelism limits and Retry-After, then observe signals such as HTTP 429 or 403 and re-plan, for example by switching to a mirror or a cache.">
+          <g>
+            <rect class="panel" x="0" y="0" width="290" height="300" rx="16" />
+            <text x="20" y="34" class="t-title">Today</text>
+            <text x="20" y="54" class="t-small">engines plan without seeing the limits</text>
+            <use href="#i-gear" x="20" y="74" width="52" height="52" class="ic-muted" />
+            <path class="flow flow--thin" d="M80 92H186" />
+            <path class="flow flow--thin" d="M80 104H186" />
+            <path class="flow flow--thin" d="M80 116H186" />
+            <use href="#i-server" x="192" y="72" width="56" height="56" class="ic-ink" />
+            <rect class="tag-ink" x="232" y="62" width="44" height="22" rx="5" />
+            <text x="254" y="78" class="t-small t-strong t-center t-white">403</text>
+            <use href="#i-search" x="20" y="166" width="24" height="24" class="ic-ink" />
+            <text x="54" y="184" class="t-label">probe every source</text>
+            <use href="#i-clock" x="20" y="208" width="24" height="24" class="ic-ink" />
+            <text x="54" y="226" class="t-label">back off after rejections</text>
+            <use href="#i-block" x="20" y="250" width="24" height="24" class="ic-ink" />
+            <text x="54" y="268" class="t-label t-strong">still 95% errors</text>
+          </g>
+          <g class="next">
+            <circle cx="600" cy="160" r="38" class="disc--accent" />
+            <use href="#i-gear" x="576" y="136" width="48" height="48" class="ic-ink" />
+            <text x="600" y="218" class="t-small t-strong t-center">adaptive engine</text>
+            <rect class="panel" x="515" y="26" width="170" height="54" rx="12" />
+            <circle cx="537" cy="53" r="11" class="dot-accent" /><text x="537" y="58" class="t-small t-strong t-center t-white">1</text>
+            <text x="556" y="49" class="t-label t-strong">Read the limits</text>
+            <text x="556" y="67" class="t-small">VoRD description</text>
+          </g>
+          <g class="next">
+            <path class="flow flow--accent draw" pathLength="1" d="M686 56Q768 64 776 128" />
+            <rect class="panel" x="690" y="134" width="180" height="54" rx="12" />
+            <circle cx="712" cy="161" r="11" class="dot-accent" /><text x="712" y="166" class="t-small t-strong t-center t-white">2</text>
+            <text x="731" y="157" class="t-label t-strong">Plan in budget</text>
+            <text x="731" y="175" class="t-small">requests per endpoint</text>
+          </g>
+          <g class="next">
+            <path class="flow flow--accent draw" pathLength="1" d="M776 190Q770 254 710 264" />
+            <rect class="panel" x="515" y="240" width="190" height="54" rx="12" />
+            <circle cx="537" cy="267" r="11" class="dot-accent" /><text x="537" y="272" class="t-small t-strong t-center t-white">3</text>
+            <text x="556" y="263" class="t-label t-strong">Execute, paced</text>
+            <text x="556" y="281" class="t-small">parallelism, Retry-After</text>
+          </g>
+          <g class="next">
+            <path class="flow flow--accent draw" pathLength="1" d="M513 264Q420 256 410 190" />
+            <rect class="panel" x="310" y="134" width="200" height="54" rx="12" />
+            <circle cx="332" cy="161" r="11" class="dot-accent" /><text x="332" y="166" class="t-small t-strong t-center t-white">4</text>
+            <text x="351" y="157" class="t-label t-strong">Observe, re-plan</text>
+            <text x="351" y="175" class="t-small">429 / 403 → mirror, cache</text>
+            <path class="flow flow--accent draw" pathLength="1" d="M410 132Q420 62 512 54" />
+          </g>
+        </svg>
+      </figure>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Engines that read published limits can adapt instead of probing blindly.</span></p>
+      <p class="footnote">
+        <span>Directions from <a href="https://ecrum19.github.io/eliascrum/publications/real-world-federation-iswc-2026/paper" target="_blank" rel="noopener noreferrer">Crum et al., ISWC 2026</a> (Sec. 6): request budgets, endpoint-aware planning, adaptive back-off, diagnostics and safeguards against request explosion.</span>
+        <span>HTTP 429 Too Many Requests: <a href="https://www.rfc-editor.org/rfc/rfc6585" target="_blank" rel="noopener noreferrer">RFC 6585</a> · the same loop applies to querying many personal pods (part 1).</span>
+      </p>
+    </section>
+
+    <!-- 03 · Ontology Companion Generator =================================== -->
+    <section id="part-ocg" class="slide section-divider" inlist="" rel="schema:hasPart" resource="#part-ocg">
+      <p class="eyebrow">Part 3 of 4</p>
+      <div class="section-divider__body">
+        <div>
+          <div class="section-divider__mark">
+            <span class="section-divider__number">03</span>
+            <img class="section-divider__logo" src="assets/logos/ocg.png" alt="Ontology Companion Generator logo" />
+          </div>
+          <h2 property="schema:name">Ontology Companion Generator</h2>
+          <p class="lead">A configurable generator that turns an RDF ontology into a documentation and exploration site on GitHub Pages.</p>
+        </div>
+        <div class="section-contents">
+          <span class="note__label">In this part</span>
+          <ol>
+            <li>Why it was built</li>
+            <li>How it is built</li>
+            <li>In use: VoRD's companion site</li>
+            <li>Features supported</li>
+          </ol>
+        </div>
+      </div>
+      <ol class="section-track" aria-label="Talk progress">
+        <li class="is-done">01 · PENGQUIN</li>
+        <li class="is-done">02 · Federation</li>
+        <li class="is-current">03 · Ontology Companion</li>
+        <li>04 · Variant data</li>
+      </ol>
+    </section>
+
+    <!-- 3.1 · Why ------------------------------------------------------------ -->
+    <section id="ocg-why" class="slide story" inlist="" rel="schema:hasPart" resource="#ocg-why">
+      <p class="eyebrow">3.1 · Why it was built</p>
+      <h2 property="schema:name">An ontology file alone is hard to use.</h2>
+      <figure class="visual">
+        <svg viewBox="0 0 880 330" role="img" aria-label="A vocabulary such as VoRD starts as a Turtle file. People ask which terms exist, how they relate and whether there is an example; machines ask whether an IRI resolves and whether they can get Turtle. Publishing therefore needs reference docs, term pages, a relationship graph, examples and shapes, resolvable IRIs and content negotiation. Built by hand for each vocabulary, these drift from the source; OCG generates them from the source on every push.">
+          <g>
+            <rect class="panel" x="0" y="30" width="290" height="190" rx="12" />
+            <use href="#i-doc" x="14" y="40" width="26" height="26" class="ic-ink" />
+            <text x="48" y="59" class="t-label t-strong">vord.ttl</text>
+            <path d="M14 74H276" class="grid" />
+            <text x="16" y="100" class="t-code">vord:RateRestriction a owl:Class ;</text>
+            <text x="16" y="122" class="t-code">  rdfs:label "Rate Restriction"@en ;</text>
+            <text x="16" y="144" class="t-code">  rdfs:comment "Restriction on …" ;</text>
+            <text x="16" y="166" class="t-code">  rdfs:subClassOf vord:Restriction .</text>
+            <text x="16" y="200" class="t-small">… and every other term, in one file<tspan class="fn" dy="-6">1</tspan></text>
+            <text x="0" y="248" class="t-small t-italic">A vocabulary starts as a file.</text>
+          </g>
+          <g class="next">
+            <circle cx="340" cy="44" r="20" class="disc--accent" />
+            <use href="#i-user" x="327" y="31" width="26" height="26" class="ic-ink" />
+            <text x="370" y="50" class="t-label t-strong">People ask</text>
+            <rect class="pill" x="322" y="70" width="240" height="30" rx="15" /><text x="340" y="90" class="t-small t-italic">“Which terms exist?”</text>
+            <rect class="pill" x="322" y="106" width="240" height="30" rx="15" /><text x="340" y="126" class="t-small t-italic">“How do they relate?”</text>
+            <rect class="pill" x="322" y="142" width="240" height="30" rx="15" /><text x="340" y="162" class="t-small t-italic">“Is there an example?”</text>
+            <circle cx="340" cy="204" r="20" class="disc--accent" />
+            <use href="#i-gear" x="327" y="191" width="26" height="26" class="ic-ink" />
+            <text x="370" y="210" class="t-label t-strong">Machines ask</text>
+            <rect class="pill" x="322" y="230" width="240" height="30" rx="15" /><text x="340" y="250" class="t-small t-italic">“Does this IRI resolve?”</text>
+            <rect class="pill" x="322" y="266" width="240" height="30" rx="15" /><text x="340" y="286" class="t-small t-italic">“Can I get it as Turtle?”</text>
+          </g>
+          <g class="next">
+            <text x="600" y="18" class="t-label t-strong">Publishing needs</text>
+            <rect class="chip" x="600" y="30" width="134" height="32" rx="8" /><text x="667" y="51" class="t-chip t-center">Reference docs</text>
+            <rect class="chip" x="746" y="30" width="134" height="32" rx="8" /><text x="813" y="51" class="t-chip t-center">Term pages</text>
+            <rect class="chip" x="600" y="70" width="134" height="32" rx="8" /><text x="667" y="91" class="t-chip t-center">Relationship graph</text>
+            <rect class="chip" x="746" y="70" width="134" height="32" rx="8" /><text x="813" y="91" class="t-chip t-center">Examples &amp; shapes</text>
+            <rect class="chip" x="600" y="110" width="134" height="32" rx="8" /><text x="667" y="131" class="t-chip t-center">Resolvable IRIs</text>
+            <rect class="chip" x="746" y="110" width="134" height="32" rx="8" /><text x="813" y="131" class="t-chip t-center">Content negotiation</text>
+            <use href="#i-pen" x="600" y="164" width="24" height="24" class="ic-muted" />
+            <text x="632" y="178" class="t-label">By hand, per vocabulary</text>
+            <text x="632" y="196" class="t-small">drifts from the source as it changes</text>
+          </g>
+          <g class="next">
+            <rect class="panel--accent" x="600" y="222" width="280" height="74" rx="12" />
+            <image href="assets/logos/ocg.png" x="612" y="234" width="50" height="50" />
+            <text x="674" y="254" class="t-label t-strong">OCG: generated from source</text>
+            <text x="674" y="274" class="t-small">rebuilt and deployed on every push</text>
+          </g>
+        </svg>
+      </figure>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Publishing a vocabulary well is repetitive work; OCG generates it from the source.</span></p>
+      <p class="footnote">
+        <span><sup>1</sup> From <a href="https://github.com/ecrum19/vord/blob/main/vocab/vord.ttl" target="_blank" rel="noopener noreferrer">vocab/vord.ttl</a>; VoRD (part 2) and <a href="https://w3id.org/vcf-core/vocab#" target="_blank" rel="noopener noreferrer">VCF Core</a> (part 4) are both published with OCG.</span>
+      </p>
+    </section>
+
+    <!-- 3.2 · How it is built -------------------------------------------------- -->
+    <section id="ocg-how" class="slide story" inlist="" rel="schema:hasPart" resource="#ocg-how">
+      <p class="eyebrow">3.2 · How it is built</p>
+      <h2 property="schema:name">One config file in, a complete static site out.</h2>
+      <figure class="visual">
+        <svg viewBox="0 0 880 330" role="img" aria-label="Inputs: the ontology in Turtle, RDF/XML, JSON-LD or N-Triples, optional SHACL, ShEx, examples and a ReSpec specification, and one ocg.config.json file. The build parses the RDF, lays out the graph, renders pages with embedded JSON-LD and can run an OOPS! pitfall scan. The output site has home, reference, term, graph, usage guide, specification and pitfall pages, deployed to GitHub Pages by GitHub Actions on every push. An optional persistent-IRI setup lets an RDF client receive Turtle through a w3id 303 redirect, while a browser following a term IRI lands on that term's page.">
+          <g>
+            <text x="0" y="16" class="t-label t-strong">Inputs</text>
+            <rect class="chip" x="0" y="28" width="206" height="46" rx="10" /><text x="14" y="48" class="t-label t-strong">Ontology</text><text x="14" y="66" class="t-small">Turtle · RDF/XML · JSON-LD · N-Triples</text>
+            <rect class="chip" x="0" y="82" width="206" height="46" rx="10" /><text x="14" y="102" class="t-label t-strong">Shapes &amp; docs</text><text x="14" y="120" class="t-small">SHACL · ShEx · examples · ReSpec</text>
+            <rect class="chip--focus" x="0" y="136" width="206" height="46" rx="10" /><text x="14" y="156" class="t-code t-strong">ocg.config.json</text><text x="14" y="174" class="t-small">metadata · pages · theme · IRIs</text>
+          </g>
+          <g class="next">
+            <path class="flow draw" pathLength="1" d="M212 105H246" />
+            <circle cx="290" cy="58" r="34" class="disc--accent" />
+            <use href="#i-gear" x="266" y="34" width="48" height="48" class="ic-ink" />
+            <text x="336" y="54" class="t-title">Build</text>
+            <text x="336" y="74" class="t-code">ocg:build</text>
+            <text x="256" y="118" class="t-small">1  parse RDF (rdf-parse)</text>
+            <text x="256" y="138" class="t-small">2  lay out graph (ForceAtlas2)</text>
+            <text x="256" y="158" class="t-small">3  render pages + JSON-LD</text>
+            <text x="256" y="178" class="t-small">4  optional OOPS! pitfall scan</text>
+          </g>
+          <g class="next">
+            <path class="flow draw" pathLength="1" d="M440 105H474" />
+            <text x="482" y="16" class="t-code t-strong">site/</text>
+            <rect class="chip" x="482" y="28" width="100" height="30" rx="8" /><text x="532" y="48" class="t-chip t-center">Home</text>
+            <rect class="chip" x="590" y="28" width="100" height="30" rx="8" /><text x="640" y="48" class="t-chip t-center">Reference</text>
+            <rect class="chip" x="482" y="66" width="100" height="30" rx="8" /><text x="532" y="86" class="t-chip t-center">Term pages</text>
+            <rect class="chip" x="590" y="66" width="100" height="30" rx="8" /><text x="640" y="86" class="t-chip t-center">Graph</text>
+            <rect class="chip" x="482" y="104" width="100" height="30" rx="8" /><text x="532" y="124" class="t-chip t-center">Usage guide</text>
+            <rect class="chip" x="590" y="104" width="100" height="30" rx="8" /><text x="640" y="124" class="t-chip t-center">Spec</text>
+            <rect class="chip" x="482" y="142" width="100" height="30" rx="8" /><text x="532" y="162" class="t-chip t-center">Pitfalls</text>
+            <rect class="chip" x="590" y="142" width="100" height="30" rx="8" /><text x="640" y="162" class="t-chip t-center">JSON-LD</text>
+          </g>
+          <g class="next">
+            <path class="flow draw" pathLength="1" d="M696 105H730" />
+            <circle cx="790" cy="58" r="34" class="disc--accent" />
+            <use href="#i-globe" x="766" y="34" width="48" height="48" class="ic-ink" />
+            <text x="790" y="122" class="t-label t-strong t-center">GitHub Pages</text>
+            <text x="790" y="142" class="t-small t-center">deployed by GitHub Actions</text>
+            <text x="790" y="160" class="t-small t-center">on every push to main</text>
+          </g>
+          <g class="next">
+            <rect class="panel" x="0" y="204" width="880" height="114" rx="14" />
+            <text x="20" y="232" class="t-label t-strong">One IRI, two audiences</text>
+            <text x="216" y="232" class="t-small">optional persistent-IRI setup, via w3id.org<tspan class="fn" dy="-6">1</tspan></text>
+            <use href="#i-gear" x="20" y="250" width="24" height="24" class="ic-ink" />
+            <text x="52" y="267" class="t-label">RDF client</text>
+            <path class="flow flow--thin" d="M150 262H188" />
+            <text x="196" y="267" class="t-code">w3id.org/…/vocab   Accept: text/turtle</text>
+            <path class="flow flow--accent flow--thin" d="M520 262H588" />
+            <text x="554" y="254" class="t-small t-strong t-center t-accent">303</text>
+            <text x="596" y="267" class="t-label">Turtle file on GitHub Pages</text>
+            <use href="#i-user" x="20" y="282" width="24" height="24" class="ic-ink" />
+            <text x="52" y="299" class="t-label">Browser</text>
+            <path class="flow flow--thin" d="M150 294H188" />
+            <text x="196" y="299" class="t-code">w3id.org/…/vocab#RateRestriction</text>
+            <path class="flow flow--accent flow--thin" d="M520 294H588" />
+            <text x="596" y="299" class="t-label">resolver → that term's page</text>
+          </g>
+        </svg>
+      </figure>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Human docs and machine-readable RDF come from the same source, in one build.</span></p>
+      <p class="footnote">
+        <span>Built on <a href="https://github.com/rubensworks/rdf-parse.js" target="_blank" rel="noopener noreferrer">rdf-parse</a>, <a href="https://graphology.github.io/" target="_blank" rel="noopener noreferrer">Graphology</a> and <a href="https://www.sigmajs.org/" target="_blank" rel="noopener noreferrer">Sigma.js</a>; pitfalls from <a href="https://oops.linkeddata.es" target="_blank" rel="noopener noreferrer">OOPS!</a>; set up with <code>npx ocg init --ontology vocab/my-vocabulary.ttl</code>; step-by-step in the <a href="https://ecrum19.github.io/ontology_companion_generator/usage-guide.html#getting-started" target="_blank" rel="noopener noreferrer">Usage Guide</a>.</span>
+        <span><sup>1</sup> Mechanism as described in the <a href="https://github.com/ecrum19/ontology_companion_generator#persistent-iris-and-linked-data" target="_blank" rel="noopener noreferrer">OCG README</a>; hash IRIs return the whole ontology, not one term.</span>
+      </p>
+    </section>
+
+    <!-- 3.3 · In use ---------------------------------------------------------- -->
+    <section id="ocg-in-use" class="slide story" inlist="" rel="schema:hasPart" resource="#ocg-in-use">
+      <p class="eyebrow">3.3 · In use</p>
+      <h2 property="schema:name">In use: the companion site for VoRD.</h2>
+      <div class="shots">
+        <figure class="shot">
+          <div class="shot__bar"><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><a href="https://ecrum19.github.io/vord/" target="_blank" rel="noopener noreferrer">ecrum19.github.io/vord ↗</a></div>
+          <img src="assets/figures/ocg-vord-home.png" alt="VoRD companion site home page: title, canonical IRI https://w3id.org/vord#, version 0.2, links to the reference, graph, term pages, specification, Turtle source, SHACL shapes and ShEx schema." />
+          <figcaption>Home: identity, canonical IRI, version and every source file</figcaption>
+        </figure>
+        <figure class="shot next">
+          <div class="shot__bar"><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><a href="https://ecrum19.github.io/vord/ontology-graph.html" target="_blank" rel="noopener noreferrer">ecrum19.github.io/vord/ontology-graph ↗</a></div>
+          <img src="assets/figures/ocg-vord-graph.png" alt="VoRD relationship graph: vord:Restriction at the centre, linked to its subclasses such as RateRestriction, QuotaRestriction and CostModelRestriction, and to properties such as maxValue, windowDuration and hasScope." />
+          <figcaption>Graph: every restriction type around <code>vord:Restriction</code></figcaption>
+        </figure>
+      </div>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span><a href="https://ecrum19.github.io/vord/" target="_blank" rel="noopener noreferrer">VoRD</a> and <a href="https://ecrum19.github.io/vcf-core-vocabulary/" target="_blank" rel="noopener noreferrer">VCF Core</a> each get docs, a graph and term pages from one config file.</span></p>
+      <p class="footnote">
+        <span>Live sites: <a href="https://ecrum19.github.io/vord/" target="_blank" rel="noopener noreferrer">VoRD (ecrum19.github.io/vord)</a> · <a href="https://ecrum19.github.io/vcf-core-vocabulary/" target="_blank" rel="noopener noreferrer">VCF Core (ecrum19.github.io/vcf-core-vocabulary)</a> · <a href="https://ecrum19.github.io/ontology_companion_generator/" target="_blank" rel="noopener noreferrer">OCG's own example</a>; package: <a href="https://www.npmjs.com/package/ontology-companion-generator" target="_blank" rel="noopener noreferrer">ontology-companion-generator</a> on npm (v1.5.0).</span>
+      </p>
+    </section>
+
+    <!-- 3.4 · Features supported --------------------------------------------- -->
+    <section id="ocg-features" class="slide story" inlist="" rel="schema:hasPart" resource="#ocg-features">
+      <p class="eyebrow">3.4 · Features supported</p>
+      <h2 property="schema:name">What OCG integrates, and what you can change.</h2>
+      <figure class="visual">
+        <svg viewBox="0 0 880 330" role="img" aria-label="Integrated services: OOPS! for an optional pitfall report page, WebVOWL for an optional second graph view, ReSpec for an optional specification page, w3id.org for optional persistent IRIs and content-negotiation rules, and GitHub Actions and Pages to validate, build and deploy on every push. Everything else is set in ocg.config.json: project metadata, source files, which pages are built, home-page copy, featured terms, graph modes and layout, the hierarchy overview, theme colors and fonts, persistent IRIs and the pitfall scanner.">
+          <g>
+            <text x="0" y="16" class="t-label t-strong">Integrated services</text>
+            <circle cx="20" cy="54" r="20" class="disc--accent" /><use href="#i-search" x="7" y="41" width="26" height="26" class="ic-ink" />
+            <a href="https://ecrum19.github.io/ontology_companion_generator/usage-guide.html#pitfalls" target="_blank" rel="noopener noreferrer"><text x="52" y="49" class="t-label t-strong t-link">OOPS!</text></a>
+            <text x="52" y="68" class="t-small">pitfall report page, by importance · cached</text>
+            <rect class="pill" x="352" y="42" width="62" height="24" rx="12" /><text x="383" y="58" class="t-small t-center">optional</text>
+            <circle cx="20" cy="108" r="20" class="disc--accent" /><use href="#i-federation" x="7" y="95" width="26" height="26" class="ic-ink" />
+            <a href="https://ecrum19.github.io/ontology_companion_generator/usage-guide.html#graph" target="_blank" rel="noopener noreferrer"><text x="52" y="103" class="t-label t-strong t-link">WebVOWL</text></a>
+            <text x="52" y="122" class="t-small">second, standard view of the graph</text>
+            <rect class="pill" x="352" y="96" width="62" height="24" rx="12" /><text x="383" y="112" class="t-small t-center">optional</text>
+            <circle cx="20" cy="162" r="20" class="disc--accent" /><use href="#i-doc" x="7" y="149" width="26" height="26" class="ic-ink" />
+            <a href="https://ecrum19.github.io/ontology_companion_generator/usage-guide.html#specification" target="_blank" rel="noopener noreferrer"><text x="52" y="157" class="t-label t-strong t-link">ReSpec</text></a>
+            <text x="52" y="176" class="t-small">specification page from your source</text>
+            <rect class="pill" x="352" y="150" width="62" height="24" rx="12" /><text x="383" y="166" class="t-small t-center">optional</text>
+            <circle cx="20" cy="216" r="20" class="disc--accent" /><use href="#i-globe" x="7" y="203" width="26" height="26" class="ic-ink" />
+            <a href="https://ecrum19.github.io/ontology_companion_generator/usage-guide.html#w3id-publication" target="_blank" rel="noopener noreferrer"><text x="52" y="211" class="t-label t-strong t-link">w3id.org</text></a>
+            <text x="52" y="230" class="t-small">persistent IRIs + negotiation rules</text>
+            <rect class="pill" x="352" y="204" width="62" height="24" rx="12" /><text x="383" y="220" class="t-small t-center">optional</text>
+            <circle cx="20" cy="270" r="20" class="disc--accent" /><use href="#i-server" x="7" y="257" width="26" height="26" class="ic-ink" />
+            <a href="https://ecrum19.github.io/ontology_companion_generator/usage-guide.html#github-pages" target="_blank" rel="noopener noreferrer"><text x="52" y="265" class="t-label t-strong t-link">GitHub Actions + Pages</text></a>
+            <text x="52" y="284" class="t-small">validate, build, deploy on push</text>
+            
+            <text x="0" y="318" class="t-small">bundled into every site: <a href="https://github.com/rubensworks/rdf-parse.js" target="_blank" rel="noopener noreferrer"><tspan class="t-link">rdf-parse</tspan></a> · <a href="https://graphology.github.io/" target="_blank" rel="noopener noreferrer"><tspan class="t-link">Graphology</tspan></a> · <a href="https://www.sigmajs.org/" target="_blank" rel="noopener noreferrer"><tspan class="t-link">Sigma.js</tspan></a></text>
+          </g>
+          <g class="next">
+            <rect class="panel" x="444" y="0" width="436" height="306" rx="14" />
+            <path d="M444 14a14 14 0 0 1 14-14h408a14 14 0 0 1 14 14v26H444z" class="panel--accent" />
+            <text x="462" y="26" class="t-code t-strong">ocg.config.json</text>
+            <text x="866" y="26" class="t-small t-end">what you can change</text>
+              <a href="https://ecrum19.github.io/ontology_companion_generator/usage-guide.html#project" target="_blank" rel="noopener noreferrer"><text x="462" y="66" class="t-code t-link">"project"</text></a><text x="606" y="66" class="t-small">name, namespace, prefix, version</text>
+              <a href="https://ecrum19.github.io/ontology_companion_generator/usage-guide.html#artifacts" target="_blank" rel="noopener noreferrer"><text x="462" y="88" class="t-code t-link">"sources"</text></a><text x="606" y="88" class="t-small">ontology, shapes, ShEx, spec, examples</text>
+              <a href="https://ecrum19.github.io/ontology_companion_generator/usage-guide.html#configuration" target="_blank" rel="noopener noreferrer"><text x="462" y="110" class="t-code t-link">"features"</text></a><text x="606" y="110" class="t-small">turn each page on or off</text>
+              <a href="https://ecrum19.github.io/ontology_companion_generator/usage-guide.html#home" target="_blank" rel="noopener noreferrer"><text x="462" y="132" class="t-code t-link">"site"</text></a><text x="606" y="132" class="t-small">home copy, TOC, footer, logo, favicon</text>
+              <a href="https://ecrum19.github.io/ontology_companion_generator/usage-guide.html#home" target="_blank" rel="noopener noreferrer"><text x="462" y="154" class="t-code t-link">"curation"</text></a><text x="606" y="154" class="t-small">featured terms, source-viewer tabs</text>
+              <a href="https://ecrum19.github.io/ontology_companion_generator/usage-guide.html#graph" target="_blank" rel="noopener noreferrer"><text x="462" y="176" class="t-code t-link">"graph"</text></a><text x="606" y="176" class="t-small">modes, layout, labels, colors, WebVOWL</text>
+              <a href="https://ecrum19.github.io/ontology_companion_generator/usage-guide.html#reference" target="_blank" rel="noopener noreferrer"><text x="462" y="198" class="t-code t-link">"hierarchy"</text></a><text x="606" y="198" class="t-small">roots, depth and size of the overview</text>
+              <a href="https://ecrum19.github.io/ontology_companion_generator/usage-guide.html#branding" target="_blank" rel="noopener noreferrer"><text x="462" y="220" class="t-code t-link">"theme"</text></a><text x="606" y="220" class="t-small">colors and fonts<tspan class="fn" dy="-6">1</tspan></text>
+              <a href="https://ecrum19.github.io/ontology_companion_generator/usage-guide.html#persistent-iri" target="_blank" rel="noopener noreferrer"><text x="462" y="242" class="t-code t-link">"persistentIri"</text></a><text x="606" y="242" class="t-small">w3id namespace, RDF serializations</text>
+              <a href="https://ecrum19.github.io/ontology_companion_generator/usage-guide.html#pitfalls" target="_blank" rel="noopener noreferrer"><text x="462" y="264" class="t-code t-link">"pitfallScanner"</text></a><text x="606" y="264" class="t-small">on/off, pitfall codes, cache</text>
+            <text x="462" y="296" class="t-small t-italic">validated against a JSON schema by ocg:check</text>
+          </g>
+        </svg>
+      </figure>
+      <p class="takehome next"><span class="takehome__label">Docs</span><span>In-depth examples and documentation for every option: <a href="https://ecrum19.github.io/ontology_companion_generator/usage-guide.html" target="_blank" rel="noopener noreferrer">OCG Usage Guide ↗</a></span></p>
+      <p class="footnote">
+        <span><sup>1</sup> Released v1.5.0; component styling, corner radii and custom CSS are on the <code>feat/site-reskin</code> branch, not yet released.</span>
+        <span>Services: <a href="https://oops.linkeddata.es" target="_blank" rel="noopener noreferrer">OOPS!</a> · <a href="http://vowl.visualdataweb.org/webvowl.html" target="_blank" rel="noopener noreferrer">WebVOWL</a> · <a href="https://respec.org/docs/" target="_blank" rel="noopener noreferrer">ReSpec</a> · <a href="https://w3id.org/" target="_blank" rel="noopener noreferrer">w3id.org</a>; each name and config key above links to its section of the Usage Guide.</span>
+      </p>
+    </section>
+
+    <!-- 04 · Semantifying genomic variant data ========================= -->
+    <section id="part-variants" class="slide section-divider" inlist="" rel="schema:hasPart" resource="#part-variants">
+      <p class="eyebrow">Part 4 of 4</p>
+      <div class="section-divider__body">
+        <div>
+          <div class="section-divider__mark">
+            <span class="section-divider__number">04</span>
+            <img class="section-divider__logo" src="assets/logos/vcf-rdfizer.png" alt="VCF-RDFizer logo" />
+          </div>
+          <h2 property="schema:name">Semantifying genomic variant data</h2>
+          <p class="lead">From VCF files to linked, queryable and policy-aware RDF, with the VCF Core vocabulary and VCF-RDFizer.</p>
+        </div>
+        <div class="section-contents">
+          <span class="note__label">In this part</span>
+          <ol>
+            <li>Why: meaning hidden in structure</li>
+            <li>VCF Core: making context explicit</li>
+            <li>VCF-RDFizer: convert, check, link, govern</li>
+            <li>Faithful and checkable</li>
+            <li>A linked, policy-aware use case</li>
+            <li>Costs, and when to use it</li>
+          </ol>
+        </div>
+      </div>
+      <ol class="section-track" aria-label="Talk progress">
+        <li class="is-done">01 · PENGQUIN</li>
+        <li class="is-done">02 · Federation</li>
+        <li class="is-done">03 · Ontology Companion</li>
+        <li class="is-current">04 · Variant data</li>
+      </ol>
+    </section>
+
+    <!-- 4.1 · Why ------------------------------------------------------------ -->
+    <section id="vcf-why" class="slide story" inlist="" rel="schema:hasPart" resource="#vcf-why">
+      <p class="eyebrow">4.1 · Why</p>
+      <h2 property="schema:name">VCF keeps meaning in its structure, not in its values.</h2>
+      <figure class="visual">
+        <svg viewBox="0 0 880 330" role="img" aria-label="A VCF record at chr1 position 1 has reference G and alternate alleles A and C. Sample S1 has LAA equal to 2 and LAD equal to 20,30. LAD is declared Number=LR: one depth for the reference, then one per allele listed in LAA. Read by ALT position, the depth 30 goes to A; read through LAA, as the specification requires, it goes to C. Both readings return a plausible answer.">
+          <g>
+            <rect class="panel" x="0" y="0" width="520" height="112" rx="10" />
+            <text x="16" y="30" class="t-code t-muted">##FORMAT=&lt;ID=LAD,Number=LR,…&gt;</text>
+            <text x="16" y="60" class="t-code t-muted">#CHROM  POS  REF  ALT   FORMAT      S1</text>
+            <text x="16" y="88" class="t-code">chr1    1    G    A,C   GT:LAA:LAD  2/2:2:20,30</text>
+            <text x="540" y="20" class="t-label t-strong">Two problems for clinical use<tspan class="fn" dy="-6">2</tspan></text>
+            <circle cx="552" cy="48" r="11" class="dot-accent" /><text x="552" y="53" class="t-small t-strong t-center t-white">1</text>
+            <text x="572" y="44" class="t-label">interpretation rules stay implicit</text>
+            <text x="572" y="62" class="t-small">hard to integrate with other data</text>
+            <circle cx="552" cy="90" r="11" class="dot-accent" /><text x="552" y="95" class="t-small t-strong t-center t-white">2</text>
+            <text x="572" y="86" class="t-label">consent is per file</text>
+            <text x="572" y="104" class="t-small">and rarely machine-readable</text>
+          </g>
+          <g class="next">
+            <text x="0" y="138" class="t-small">alleles at chr1:1</text>
+            <rect class="chip" x="0" y="146" width="110" height="34" rx="8" /><text x="14" y="168" class="t-code">0  G</text><text x="96" y="168" class="t-small t-end">REF</text>
+            <rect class="chip" x="120" y="146" width="80" height="34" rx="8" /><text x="134" y="168" class="t-code">1  A</text>
+            <rect class="chip" x="210" y="146" width="80" height="34" rx="8" /><text x="224" y="168" class="t-code">2  C</text>
+            <text x="330" y="138" class="t-small">sample S1</text>
+            <rect class="chip--focus" x="330" y="146" width="100" height="34" rx="8" /><text x="380" y="168" class="t-code t-center">LAA = 2</text>
+            <rect class="chip--focus" x="440" y="146" width="130" height="34" rx="8" /><text x="505" y="168" class="t-code t-center">LAD = 20,30</text>
+            <text x="590" y="160" class="t-small">LAD has one depth for REF,</text>
+            <text x="590" y="176" class="t-small">then one per allele <tspan class="t-strong">listed in LAA</tspan><tspan class="fn" dy="-6">1</tspan></text>
+          </g>
+          <g class="next">
+            <rect class="panel" x="0" y="204" width="425" height="114" rx="14" />
+            <use href="#i-block" x="18" y="218" width="26" height="26" class="ic-muted" />
+            <text x="54" y="237" class="t-title">Read by ALT position</text>
+            <text x="54" y="272" class="t-code">20 → G     30 → A</text>
+            <text x="54" y="302" class="t-small t-italic">“G&gt;A is supported by 30 reads”: wrong allele</text>
+          </g>
+          <g class="next">
+            <rect class="panel--accent" x="455" y="204" width="425" height="114" rx="14" />
+            <use href="#i-check" x="473" y="218" width="26" height="26" class="ic-ink" />
+            <text x="509" y="237" class="t-title">Read through LAA (the rule)</text>
+            <text x="509" y="272" class="t-code t-strong">20 → G     30 → C</text>
+            <text x="509" y="302" class="t-small t-italic">“G&gt;C is supported by 30 reads”: correct</text>
+          </g>
+        </svg>
+      </figure>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Both readings look plausible; lose the structure and evidence lands on the wrong allele.</span></p>
+      <p class="footnote">
+        <span><sup>1</sup> <code>Number=LR</code> in the <a href="https://samtools.github.io/hts-specs/VCFv4.5.pdf" target="_blank" rel="noopener noreferrer">VCF 4.5 specification</a>; example from Listing 1 of the <a href="https://github.com/ecrum19/SWAT4HCLS_2027/blob/main/long_revised/main_long.pdf" target="_blank" rel="noopener noreferrer">VCF Core manuscript (SWAT4HCLS 2027)</a>.</span>
+        <span><sup>2</sup> As framed in the <a href="https://github.com/ecrum19/vcf-rdfizer-testing/blob/main/BioMedSem_2026/paper/paper.pdf" target="_blank" rel="noopener noreferrer">VCF-RDFizer manuscript (BioMedSem, in preparation)</a>.</span>
+      </p>
+    </section>
+
+    <!-- 4.2 · VCF Core ------------------------------------------------------- -->
+    <section id="vcf-core-model" class="slide story" inlist="" rel="schema:hasPart" resource="#vcf-core-model">
+      <p class="eyebrow">4.2 · How: the vocabulary</p>
+      <h2 property="schema:name">VCF Core turns interpretation rules into relationships.</h2>
+      <figure class="visual">
+        <svg viewBox="0 0 880 330" role="img" aria-label="VCF Core model of the example record. A VCFFile has a VCFHeader with a FORMATHeaderLine declaring LAD with Number=LR, and a VCFRecord with an AltAllele C. The record has a VariantCall with a SampleCall for S1, whose FormatFieldValue 20,30 has a FieldValueItem 30 linked through forAllele to the AltAllele C and declared by the LAD header line. In the condensed profile, a CohortCallMatrix holds a FormatValueVector of all samples' values instead.">
+          <!-- 1 · file and header -->
+          <g>
+            <rect class="panel" x="0" y="0" width="160" height="48" rx="10" /><text x="80" y="21" class="t-label t-strong t-center">VCFFile</text><text x="80" y="39" class="t-code t-center">example.vcf</text>
+            <path class="flow flow--thin" d="M160 24H251" /><text x="205" y="17" class="t-edge t-center">hasHeader</text>
+            <rect class="panel" x="255" y="0" width="160" height="48" rx="10" /><text x="335" y="21" class="t-label t-strong t-center">VCFHeader</text><text x="335" y="39" class="t-small t-center">version, contigs, fields</text>
+            <path class="flow flow--thin" d="M415 24H506" /><text x="462" y="17" class="t-edge t-center">hasHeaderLine</text>
+            <rect class="panel" x="510" y="0" width="160" height="48" rx="10" /><text x="590" y="21" class="t-label t-strong t-center">FORMATHeaderLine</text><text x="590" y="39" class="t-code t-center">LAD · Number=LR</text>
+          </g>
+          <!-- 2 · record and alleles -->
+          <g class="next">
+            <path class="flow flow--thin" d="M80 48V80" /><text x="86" y="69" class="t-edge">hasRecord</text>
+            <rect class="panel" x="0" y="84" width="160" height="48" rx="10" /><text x="80" y="105" class="t-label t-strong t-center">VCFRecord</text><text x="80" y="123" class="t-code t-center">chr1:1 G&gt;A,C</text>
+            <path class="flow flow--thin" d="M160 108H251" /><text x="205" y="101" class="t-edge t-center">hasAltAllele</text>
+            <rect class="panel" x="255" y="84" width="160" height="48" rx="10" /><text x="335" y="105" class="t-label t-strong t-center">AltAllele</text><text x="335" y="123" class="t-code t-center">"C" · ALT[2]</text>
+          </g>
+          <!-- 3 · sample values, resolved to their allele -->
+          <g class="next">
+            <path class="flow flow--thin" d="M80 132V164" /><text x="86" y="153" class="t-edge">hasCall</text>
+            <rect class="panel" x="0" y="168" width="160" height="48" rx="10" /><text x="80" y="197" class="t-label t-strong t-center">VariantCall</text>
+            <path class="flow flow--thin" d="M160 192H251" /><text x="205" y="185" class="t-edge t-center">hasSampleCall</text>
+            <rect class="panel" x="255" y="168" width="160" height="48" rx="10" /><text x="335" y="189" class="t-label t-strong t-center">SampleCall</text><text x="335" y="207" class="t-code t-center">S1</text>
+            <path class="flow flow--thin" d="M415 192H506" /><text x="462" y="185" class="t-edge t-center">hasFormatValue</text>
+            <rect class="panel" x="510" y="168" width="160" height="48" rx="10" /><text x="590" y="189" class="t-label t-strong t-center">FormatFieldValue</text><text x="590" y="207" class="t-code t-center">"20,30"</text>
+            <path class="flow flow--thin" d="M590 168V136" /><text x="596" y="157" class="t-edge">hasValueItem</text>
+            <rect class="chip--focus" x="510" y="84" width="160" height="48" rx="10" /><text x="590" y="105" class="t-label t-strong t-center">FieldValueItem</text><text x="590" y="123" class="t-code t-center">30 · LAD[2]</text>
+            <path class="flow flow--accent draw" pathLength="1" d="M510 108H419" /><text x="462" y="101" class="t-edge t-center t-strong">forAllele</text>
+            <path d="M670 192H690V24H674" fill="none" stroke="#7a7a7a" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#arrow-ink)" />
+            <text x="698" y="112" class="t-edge" transform="rotate(90 698 112)">declaredBy</text>
+          </g>
+          <!-- 4 · condensed profile -->
+          <g class="next">
+            <path class="flow flow--thin" d="M80 216V276H251" /><text x="90" y="268" class="t-edge">hasCallMatrix</text>
+            <rect class="chip" x="255" y="252" width="160" height="48" rx="10" /><text x="335" y="281" class="t-label t-strong t-center">CohortCallMatrix</text>
+            <path class="flow flow--thin" d="M415 276H506" />
+            <rect class="chip" x="510" y="252" width="160" height="48" rx="10" /><text x="590" y="273" class="t-label t-strong t-center">FormatValueVector</text><text x="590" y="291" class="t-code t-center">"20,30⇥12,9"</text>
+            <rect class="panel" x="716" y="60" width="164" height="240" rx="12" />
+            <rect class="panel" x="730" y="76" width="22" height="16" rx="4" /><text x="760" y="89" class="t-label t-strong">Expanded</text>
+            <text x="730" y="110" class="t-small">a node per sample value;</text>
+            <text x="730" y="126" class="t-small">directly queryable</text>
+            <rect class="chip" x="730" y="150" width="22" height="16" rx="4" /><text x="760" y="163" class="t-label t-strong">Condensed</text>
+            <text x="730" y="184" class="t-small">one vector per field;</text>
+            <text x="730" y="200" class="t-small">decode before querying</text>
+            <path d="M730 218H866" class="grid" />
+            <text x="730" y="242" class="t-small t-strong">at 2,504 samples<tspan class="fn" dy="-6">2</tspan></text>
+            <text x="730" y="262" class="t-small">432× fewer triples</text>
+            <text x="730" y="280" class="t-small">69× smaller HDT</text>
+          </g>
+        </svg>
+      </figure>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span><code>forAllele</code> resolves the local-allele rule once, at conversion; every query reuses it.</span></p>
+      <p class="footnote">
+        <span><a href="https://ecrum19.github.io/vcf-core-vocabulary/" target="_blank" rel="noopener noreferrer">VCF Core v2.1.3</a>: version-specific for VCF 4.1–4.5, constraints as SHACL shapes, <a href="https://github.com/ecrum19/vcf-core-vocabulary/tree/v2.1.3/mappings" target="_blank" rel="noopener noreferrer">123 SSSOM alignments</a> to other models; model from <a href="https://github.com/ecrum19/SWAT4HCLS_2027/blob/main/long_revised/main_long.pdf" target="_blank" rel="noopener noreferrer">SWAT4HCLS 2027</a>, Fig. 1.</span>
+        <span><sup>2</sup> 10,000 records with 2,504 samples (<a href="https://github.com/ecrum19/vcf-rdfizer-testing/blob/main/BioMedSem_2026/paper/paper.pdf" target="_blank" rel="noopener noreferrer">VCF-RDFizer manuscript</a>); condensed keeps every value, inside literals.</span>
+      </p>
+    </section>
+
+    <!-- 4.3 · VCF-RDFizer ---------------------------------------------------- -->
+    <section id="vcf-pipeline" class="slide story" inlist="" rel="schema:hasPart" resource="#vcf-pipeline">
+      <p class="eyebrow">4.3 · How: the converter</p>
+      <h2 property="schema:name">VCF-RDFizer: convert, check, then link and govern.</h2>
+      <figure class="visual">
+        <svg viewBox="0 0 880 330" role="img" aria-label="VCF-RDFizer pipeline in six stages: a VCF 4.1 to 4.5 file; conversion with an RML backbone on RMLStreamer plus direct emitters, about 171 triples per record; storage as N-Triples with optional HDT or COTTAS; checking with 13 SPARQL questions against a VCF parser plus SHACL shapes; linking through separate linksets such as SPDI to ClinVar and region to Ensembl genes; and governance through ODRL release views per requester. Observations stay file-scoped; the same variant in two files remains two observations, connected through a shared identifier in a separate linkset.">
+          <g>
+            <circle cx="66" cy="46" r="34" class="disc--accent" /><use href="#i-doc" x="44" y="24" width="44" height="44" class="ic-ink" />
+            <text x="66" y="108" class="t-label t-strong t-center">VCF file</text>
+            <text x="66" y="128" class="t-small t-center">VCF 4.1–4.5</text>
+            <text x="66" y="146" class="t-small t-center">1 to 1000s of samples</text>
+            <path class="flow flow--thin" d="M104 46H176" />
+            <circle cx="216" cy="46" r="34" class="disc--accent" /><use href="#i-gear" x="194" y="24" width="44" height="44" class="ic-ink" />
+            <text x="216" y="108" class="t-label t-strong t-center">Convert</text>
+            <text x="216" y="128" class="t-small t-center">RML backbone</text>
+            <text x="216" y="146" class="t-small t-center">+ direct emitters<tspan class="fn" dy="-6">1</tspan></text>
+            <text x="216" y="164" class="t-small t-center">≈ 171 triples / record</text>
+            <path class="flow flow--thin" d="M254 46H326" />
+            <circle cx="365" cy="46" r="34" class="disc--accent" /><use href="#i-db" x="343" y="24" width="44" height="44" class="ic-ink" />
+            <text x="365" y="108" class="t-label t-strong t-center">Store</text>
+            <text x="365" y="128" class="t-small t-center">N-Triples</text>
+            <text x="365" y="146" class="t-small t-center">optional HDT, COTTAS</text>
+          </g>
+          <g class="next">
+            <path class="flow flow--thin" d="M403 46H475" />
+            <circle cx="515" cy="46" r="34" class="disc--accent" /><use href="#i-check" x="493" y="24" width="44" height="44" class="ic-ink" />
+            <text x="515" y="108" class="t-label t-strong t-center">Check</text>
+            <text x="515" y="128" class="t-small t-center">13 SPARQL questions</text>
+            <text x="515" y="146" class="t-small t-center">vs. a VCF parser</text>
+            <text x="515" y="164" class="t-small t-center">+ SHACL shapes</text>
+            <path d="M8 186H584" class="grid" />
+            <text x="296" y="204" class="t-small t-strong t-center">convert &amp; verify</text>
+          </g>
+          <g class="next">
+            <path class="flow flow--thin" d="M553 46H625" />
+            <circle cx="664" cy="46" r="34" class="disc--accent" /><use href="#i-federation" x="642" y="24" width="44" height="44" class="ic-ink" />
+            <text x="664" y="108" class="t-label t-strong t-center">Link</text>
+            <text x="664" y="128" class="t-small t-center">separate linksets</text>
+            <text x="664" y="146" class="t-small t-center">SPDI → ClinVar</text>
+            <text x="664" y="164" class="t-small t-center">region → Ensembl</text>
+            <path class="flow flow--thin" d="M702 46H774" />
+            <circle cx="814" cy="46" r="34" class="disc--accent" /><use href="#i-shield" x="792" y="24" width="44" height="44" class="ic-ink" />
+            <text x="814" y="108" class="t-label t-strong t-center">Govern</text>
+            <text x="814" y="128" class="t-small t-center">ODRL release views</text>
+            <text x="814" y="146" class="t-small t-center">one per requester</text>
+            <text x="814" y="164" class="t-small t-center">default deny</text>
+            <path d="M600 186H872" class="grid" />
+            <text x="736" y="204" class="t-small t-strong t-center">connect &amp; govern (part 1)</text>
+          </g>
+          <g class="next">
+            <rect class="panel" x="0" y="222" width="880" height="96" rx="14" />
+            <use href="#i-doc" x="22" y="236" width="30" height="30" class="ic-ink" /><text x="60" y="256" class="t-small t-strong">HG002.vcf · record</text>
+            <use href="#i-doc" x="22" y="276" width="30" height="30" class="ic-ink" /><text x="60" y="296" class="t-small t-strong">HG005.vcf · record</text>
+            <path class="flow flow--accent flow--thin draw" pathLength="1" d="M190 252L282 268" />
+            <path class="flow flow--accent flow--thin draw" pathLength="1" d="M190 292L282 278" />
+            <rect class="chip--focus" x="288" y="258" width="150" height="32" rx="16" /><text x="363" y="279" class="t-small t-strong t-center">shared variant ID</text>
+            <text x="470" y="258" class="t-label t-strong">Observations stay file-scoped</text>
+            <text x="470" y="280" class="t-small">the same variant in two files remains two observations,</text>
+            <text x="470" y="298" class="t-small">each with its own quality values and provenance</text>
+          </g>
+        </svg>
+      </figure>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Each conversion is checked against its source; links and policies stay separate data.</span></p>
+      <p class="footnote">
+        <span><sup>1</sup> RML (<a href="https://github.com/RMLio/RMLStreamer" target="_blank" rel="noopener noreferrer">RMLStreamer</a>) emits the nine-triple record backbone, about 5% of the graph; direct emitters supply the rest.</span>
+        <span><a href="https://github.com/ecrum19/VCF-RDFizer" target="_blank" rel="noopener noreferrer">VCF-RDFizer</a> on PyPI, Conda-Forge and Docker (MIT); design from the <a href="https://github.com/ecrum19/vcf-rdfizer-testing/blob/main/BioMedSem_2026/paper/paper.pdf" target="_blank" rel="noopener noreferrer">VCF-RDFizer manuscript</a>; SPDI: <a href="https://doi.org/10.1093/bioinformatics/btz856" target="_blank" rel="noopener noreferrer">Holmes et al., Bioinformatics</a>.</span>
+      </p>
+    </section>
+
+    <!-- 4.4 · Faithful and checkable ----------------------------------------- -->
+    <section id="vcf-evidence" class="slide story" inlist="" rel="schema:hasPart" resource="#vcf-evidence">
+      <p class="eyebrow">4.4 · What it means: faithful</p>
+      <h2 property="schema:name">The graph keeps what the file says, and we can check it.</h2>
+      <figure class="visual">
+        <svg viewBox="0 0 880 330" role="img" aria-label="VCF Core: all 210 specification-derived cases preserved in both sample profiles, exercising 53 of 94 requirements, with all 333 reserved declarations matching; reconstruction from RDF recovered 109 of 109 records, 151 of 151 genotypes, 431 of 431 header lines and 400 of 401 values. VCF-RDFizer: all 984 applicable paired source comparisons agreed; of 113 injected faults, queries detected 96, adding default shapes still 96, and adding all shape profiles 113. The shared tests caught a silent local-allele error: under LAA 2,4 the converter attached depths 20, 30 and 10 to alleles 0, 1 and 2 instead of 0, 2 and 4; it was fixed.">
+          <g>
+            <rect class="panel" x="0" y="0" width="425" height="206" rx="14" />
+            <text x="20" y="30" class="t-title">VCF Core</text>
+            <text x="112" y="30" class="t-small">vocabulary, SWAT4HCLS 2027<tspan class="fn" dy="-6">1</tspan></text>
+            <text x="20" y="84" class="t-big" style="font-size: 40px">210 / 210</text>
+            <text x="216" y="70" class="t-label">specification cases</text>
+            <text x="216" y="88" class="t-label">preserved, both profiles</text>
+            <text x="20" y="116" class="t-small">53 of 94 requirements exercised · all 333 reserved declarations match</text>
+            <path d="M20 132H405" class="grid" />
+            <text x="20" y="154" class="t-small t-strong">Round-trip from the graph back to VCF</text>
+            <text x="20" y="176" class="t-label">109/109 records · 151/151 genotypes</text>
+            <text x="20" y="196" class="t-label">431/431 header lines · 400/401 values</text>
+          </g>
+          <g class="next">
+            <rect class="panel" x="455" y="0" width="425" height="206" rx="14" />
+            <text x="475" y="30" class="t-title">VCF-RDFizer</text>
+            <text x="590" y="30" class="t-small">converter, in preparation<tspan class="fn" dy="-6">2</tspan></text>
+            <text x="475" y="84" class="t-big" style="font-size: 40px">984 / 984</text>
+            <text x="671" y="70" class="t-label">paired comparisons</text>
+            <text x="671" y="88" class="t-label">with the source agree</text>
+            <text x="475" y="122" class="t-small t-strong">113 injected faults detected by</text>
+            <text x="475" y="148" class="t-small">queries</text>
+            <rect class="chip" x="596" y="136" width="200" height="16" rx="4" /><rect class="tag-ink" x="596" y="136" width="170" height="16" rx="4" /><text x="804" y="149" class="t-small t-strong">96</text>
+            <text x="475" y="172" class="t-small">+ default shapes</text>
+            <rect class="chip" x="596" y="160" width="200" height="16" rx="4" /><rect class="tag-ink" x="596" y="160" width="170" height="16" rx="4" /><text x="804" y="173" class="t-small t-strong">96</text>
+            <text x="475" y="196" class="t-small">+ all shapes</text>
+            <rect class="tag-ink" x="596" y="184" width="200" height="16" rx="4" /><text x="804" y="197" class="t-small t-strong">113</text>
+          </g>
+          <g class="next">
+            <rect class="panel--accent" x="0" y="222" width="880" height="96" rx="14" />
+            <text x="20" y="250" class="t-label t-strong">Caught by the tests</text>
+            <text x="20" y="272" class="t-small">a silent local-allele error</text>
+            <text x="20" y="290" class="t-small">in the converter, now fixed</text>
+            <text x="20" y="308" class="t-code">LAA=2,4 · LAD=20,30,10</text>
+            <text x="300" y="258" class="t-small t-strong">before</text>
+            <rect class="chip--withheld" x="360" y="240" width="88" height="28" rx="8" /><text x="404" y="259" class="t-code t-center">20 → 0</text>
+            <rect class="chip--withheld" x="458" y="240" width="88" height="28" rx="8" /><text x="502" y="259" class="t-code t-center">30 → 1</text>
+            <rect class="chip--withheld" x="556" y="240" width="88" height="28" rx="8" /><text x="600" y="259" class="t-code t-center">10 → 2</text>
+            <text x="660" y="259" class="t-small t-italic">by position: wrong</text>
+            <text x="300" y="298" class="t-small t-strong">after</text>
+            <rect class="chip--focus" x="360" y="280" width="88" height="28" rx="8" /><text x="404" y="299" class="t-code t-center">20 → 0</text>
+            <rect class="chip--focus" x="458" y="280" width="88" height="28" rx="8" /><text x="502" y="299" class="t-code t-center">30 → 2</text>
+            <rect class="chip--focus" x="556" y="280" width="88" height="28" rx="8" /><text x="600" y="299" class="t-code t-center">10 → 4</text>
+            <text x="660" y="299" class="t-small t-italic">via LAA: correct</text>
+          </g>
+        </svg>
+      </figure>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Tests derived from the specification catch errors that plausible-looking output would hide.</span></p>
+      <p class="footnote">
+        <span><sup>1</sup> <a href="https://github.com/ecrum19/SWAT4HCLS_2027/blob/main/long_revised/main_long.pdf" target="_blank" rel="noopener noreferrer">VCF Core manuscript</a>, RQ1–RQ2: every case also passes empty-graph and predicate-deletion controls; most missing coverage is untested, not failing.</span>
+        <span><sup>2</sup> <a href="https://github.com/ecrum19/vcf-rdfizer-testing/blob/main/BioMedSem_2026/paper/paper.pdf" target="_blank" rel="noopener noreferrer">VCF-RDFizer manuscript</a>: fixtures and slices up to 17.1M triples; the deep shape profiles are too costly for routine large-file use.</span>
+      </p>
+    </section>
+
+    <!-- 4.5 · Use case ------------------------------------------------------- -->
+    <section id="vcf-usecase" class="slide story" inlist="" rel="schema:hasPart" resource="#vcf-usecase">
+      <p class="eyebrow">4.5 · What it means: linked</p>
+      <h2 property="schema:name">Same answers as a bcftools pipeline, plus reusable links.</h2>
+      <figure class="visual">
+        <svg viewBox="0 0 880 330" role="img" aria-label="Question: which observed alleles match a ClinVar classification in the 81 ACMG SF v3.2 genes, and which may each requester receive? The RDF route uses VCF-RDFizer, SPDI links, ClinVar, ODRL release views and SPARQL; the conventional route uses bcftools annotation and Python case logic. Both returned identical match sets in every arm. In the 104-participant cohort: 173,102 matches without policy, 63,529 for clinical care, 92,870 for disease-specific research and 48,207 for general research. A 6.5 million-triple frequency graph replaced about 857 million triples of panel INFO repeated in each genome.">
+          <g>
+            <rect class="panel--accent" x="0" y="0" width="880" height="44" rx="12" />
+            <use href="#i-search" x="14" y="10" width="24" height="24" class="ic-ink" />
+            <text x="48" y="28" class="t-label">Which alleles match a ClinVar classification in the 81 ACMG genes<tspan class="fn" dy="-6">1</tspan><tspan dy="6">, and which may each requester see?</tspan></text>
+          </g>
+          <g class="next">
+            <text x="0" y="74" class="t-small t-strong">RDF route</text>
+            <rect class="chip" x="0" y="82" width="80" height="30" rx="8" /><text x="40" y="102" class="t-chip t-center">VCF-RDFizer</text>
+            <rect class="chip" x="92" y="82" width="80" height="30" rx="8" /><text x="132" y="102" class="t-chip t-center">SPDI links</text>
+            <rect class="chip" x="184" y="82" width="80" height="30" rx="8" /><text x="224" y="102" class="t-chip t-center">ClinVar</text>
+            <rect class="chip" x="276" y="82" width="80" height="30" rx="8" /><text x="316" y="102" class="t-chip t-center">ODRL views</text>
+            <rect class="chip" x="368" y="82" width="80" height="30" rx="8" /><text x="408" y="102" class="t-chip t-center">SPARQL</text>
+            <text x="0" y="148" class="t-small t-strong">Conventional route</text>
+            <rect class="chip" x="0" y="156" width="208" height="30" rx="8" /><text x="104" y="176" class="t-chip t-center">bcftools annotate</text>
+            <rect class="chip" x="226" y="156" width="208" height="30" rx="8" /><text x="330" y="176" class="t-chip t-center">Python case logic</text>
+            <path class="flow flow--thin draw" pathLength="1" d="M452 97L484 124" />
+            <path class="flow flow--thin draw" pathLength="1" d="M438 171L486 146" />
+            <circle cx="510" cy="134" r="22" class="disc--accent" />
+            <text x="510" y="143" class="t-mid t-center">=</text>
+            <text x="510" y="190" class="t-small t-strong t-center">identical match sets</text>
+            <text x="510" y="206" class="t-small t-center">in every arm</text>
+          </g>
+          <g class="next">
+            <text x="570" y="72" class="t-label t-strong">Cohort: 104 participants</text>
+            <text x="570" y="90" class="t-small">matches released per requester<tspan class="fn" dy="-6">2</tspan></text>
+            <text x="570" y="116" class="t-small">no policy</text>
+            <rect class="chip" x="690" y="104" width="134" height="16" rx="4" /><text x="830" y="117" class="t-small t-strong">173,102</text>
+            <text x="570" y="142" class="t-small">clinical care</text>
+            <rect class="tag-ink" x="690" y="130" width="49" height="16" rx="4" /><text x="745" y="143" class="t-small t-strong">63,529</text>
+            <text x="570" y="168" class="t-small">disease-specific</text>
+            <rect class="tag-ink" x="690" y="156" width="72" height="16" rx="4" /><text x="768" y="169" class="t-small t-strong">92,870</text>
+            <text x="570" y="194" class="t-small">general research</text>
+            <rect class="tag-ink" x="690" y="182" width="37" height="16" rx="4" /><text x="733" y="195" class="t-small t-strong">48,207</text>
+          </g>
+          <g class="next">
+            <rect class="panel" x="0" y="218" width="880" height="100" rx="14" />
+            <use href="#i-db" x="22" y="236" width="40" height="40" class="ic-ink" />
+            <text x="74" y="252" class="t-label t-strong">Shared knowledge kept once</text>
+            <text x="74" y="272" class="t-small">population frequencies live in their own graph,</text>
+            <text x="74" y="290" class="t-small">joined through the same links</text>
+            <text x="470" y="270" class="t-big" style="font-size: 34px">6.5M</text>
+            <text x="560" y="262" class="t-small">triples in one frequency graph replaced</text>
+            <text x="560" y="280" class="t-small"><tspan class="t-strong">≈ 857M</tspan> triples repeated in every genome</text>
+          </g>
+        </svg>
+      </figure>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>RDF is not needed for the answer; it makes the links and release rules reusable data.</span></p>
+      <p class="footnote">
+        <span><sup>1</sup> <a href="https://doi.org/10.1016/j.gim.2023.100866" target="_blank" rel="noopener noreferrer">ACMG SF v3.2</a> gene list; <a href="https://www.ncbi.nlm.nih.gov/clinvar/" target="_blank" rel="noopener noreferrer">ClinVar</a> release 2026-09-13, at least one review star; classifications retrieved, not clinically adjudicated.</span>
+        <span><sup>2</sup> Participant–variant–gene matches, not people; all consents simulated; also run on five genomes and on whole-genome HG005 (<a href="https://github.com/ecrum19/vcf-rdfizer-testing/blob/main/BioMedSem_2026/paper/paper.pdf" target="_blank" rel="noopener noreferrer">VCF-RDFizer manuscript</a>).</span>
+      </p>
+    </section>
+
+    <!-- 4.6 · Trade-offs ----------------------------------------------------- -->
+    <section id="vcf-tradeoffs" class="slide story" inlist="" rel="schema:hasPart" resource="#vcf-tradeoffs">
+      <p class="eyebrow">4.6 · What it means: costs</p>
+      <h2 property="schema:name">It pays off when questions are repeated, not one-off.</h2>
+      <figure class="visual">
+        <svg viewBox="0 0 880 330" role="img" aria-label="Left: cumulative time against the number of separate questions. Re-parsing the VCF costs about 12 seconds per question; converting and indexing once costs about 447 seconds up front and saves about 10.2 seconds per question, so the lines cross at about 44 questions. Right: regional lookups on a 17.1 million-triple graph, median milliseconds on a log scale. QLever stays near 10 milliseconds from 1 kilobase to 10 megabase windows; bcftools with tabix rises from 4.3 to 32.7 milliseconds and cyvcf2 with tabix from 3.3 to 117.8 milliseconds. Setup: 23.2 seconds for the QLever index against 0.48 seconds for bgzip and tabix.">
+          <g>
+            <text x="0" y="14" class="t-label t-strong">One parse per question, or convert once?</text>
+            <path class="grid" d="M40 217.5H400M40 155H400M40 92.5H400M40 30H400" />
+            <path class="axis" d="M40 280H400M40 280V26" />
+            <text x="34" y="284" class="t-small t-end">0</text>
+            <text x="34" y="221" class="t-small t-end">250</text>
+            <text x="34" y="159" class="t-small t-end">500</text>
+            <text x="34" y="97" class="t-small t-end">750</text>
+            <text x="34" y="34" class="t-small t-end">1000 s</text>
+            <text x="40" y="298" class="t-small t-center">0</text>
+            <text x="130" y="298" class="t-small t-center">20</text>
+            <text x="220" y="298" class="t-small t-center">40</text>
+            <text x="310" y="298" class="t-small t-center">60</text>
+            <text x="400" y="298" class="t-small t-center">80</text>
+            <text x="220" y="318" class="t-small t-center">separate questions asked</text>
+            <path d="M40 280L400 40" fill="none" stroke="#7a7a7a" stroke-width="2.6" stroke-dasharray="7 5" />
+            <text x="330" y="70" class="t-small t-strong">parse VCF each time</text>
+          </g>
+          <g class="next">
+            <path class="draw" pathLength="1" d="M40 168.4L400 132.4" fill="none" stroke="#161616" stroke-width="3" />
+            <text x="300" y="128" class="t-small t-strong">convert + index once</text>
+            <path d="M238 148V280" stroke="#161616" stroke-width="1.2" stroke-dasharray="3 3" />
+            <circle cx="238" cy="148" r="6" class="dot-accent" />
+            <text x="160" y="196" class="t-mid">≈ 44</text>
+            <text x="160" y="214" class="t-small">questions to</text>
+            <text x="160" y="230" class="t-small">break even<tspan class="fn" dy="-6">1</tspan></text>
+          </g>
+          <g class="next">
+            <text x="470" y="14" class="t-label t-strong">Regional lookups</text>
+            <text x="590" y="14" class="t-small">median ms, log scale, setup excluded<tspan class="fn" dy="-6">2</tspan></text>
+            <path class="grid" d="M500 180H860M500 110H860M500 40H860" />
+            <path class="axis" d="M500 250H860M500 250V36" />
+            <text x="494" y="254" class="t-small t-end">1</text>
+            <text x="494" y="184" class="t-small t-end">10</text>
+            <text x="494" y="114" class="t-small t-end">100</text>
+            <text x="494" y="44" class="t-small t-end">1000</text>
+            <text x="540" y="268" class="t-small t-center">1 kb</text>
+            <text x="640" y="268" class="t-small t-center">100 kb</text>
+            <text x="740" y="268" class="t-small t-center">1 Mb</text>
+            <text x="840" y="268" class="t-small t-center">10 Mb</text>
+            <path d="M540 213.7L640 202.3L740 167.9L840 105" fill="none" stroke="#a3a3a3" stroke-width="2.4" stroke-dasharray="2 4" stroke-linecap="round" />
+            <path d="M540 205.7L640 202.3L740 188.7L840 143.9" fill="none" stroke="#5c5c5c" stroke-width="2.4" stroke-dasharray="7 4" />
+            <path d="M540 181.2L640 180L740 181.2L840 176.8" fill="none" stroke="#161616" stroke-width="3" />
+            <circle cx="840" cy="176.8" r="4" fill="#161616" /><circle cx="840" cy="143.9" r="4" fill="#5c5c5c" /><circle cx="840" cy="105" r="4" fill="#a3a3a3" />
+            <path d="M480 290H504" stroke="#161616" stroke-width="3" /><text x="510" y="294" class="t-small">QLever (graph)</text>
+            <path d="M620 290H644" stroke="#5c5c5c" stroke-width="2.4" stroke-dasharray="7 4" /><text x="650" y="294" class="t-small">bcftools + tabix</text>
+            <path d="M762 290H786" stroke="#a3a3a3" stroke-width="2.4" stroke-dasharray="2 4" stroke-linecap="round" /><text x="792" y="294" class="t-small">cyvcf2 + tabix</text>
+            <text x="470" y="318" class="t-small">setup: 23.2 s graph index vs. 0.48 s bgzip + tabix</text>
+          </g>
+        </svg>
+      </figure>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Use RDF for repeated, linked or governed questions; native tools for one-pass analyses.</span></p>
+      <p class="footnote">
+        <span><sup>1</sup> One scenario, not a constant: 423.7 s conversion + 22.8 s indexing, ≈ 10.2 s saved per question vs. ≈ 12 s parser scans.</span>
+        <span><sup>2</sup> 17.1M-triple graph; 11,160 executions, no answer disagreements; <a href="https://qlever.cs.uni-freiburg.de/" target="_blank" rel="noopener noreferrer">QLever</a>. Source: <a href="https://github.com/ecrum19/vcf-rdfizer-testing/blob/main/BioMedSem_2026/paper/paper.pdf" target="_blank" rel="noopener noreferrer">VCF-RDFizer manuscript</a>.</span>
+      </p>
+    </section>
+
+    <!-- Closing ------------------------------------------------------------- -->
+    <section id="closing" class="slide story" inlist="" rel="schema:hasPart" resource="#closing">
+      <p class="eyebrow">Wrap-up</p>
+      <h2 property="schema:name">Making life-science data usable, end to end.</h2>
+      <div class="closing-layout">
+        <!-- Draft recap: replace each <small> with the part's key result once the content slides exist. -->
+        <ul class="recap">
+          <li><img class="part-logo" src="assets/logos/pengquin.png" alt="" /><span>PENGQUIN<small>Personal genomes as privacy-aware knowledge graphs</small></span></li>
+          <li><svg aria-hidden="true"><use href="#i-federation" /></svg><span>SPARQL federation in practice<small>Real queries over public endpoints, measured over 18 months</small></span></li>
+          <li><img class="part-logo" src="assets/logos/ocg.png" alt="" /><span>Ontology Companion Generator<small>Documentation sites generated from the ontology itself</small></span></li>
+          <li><img class="part-logo" src="assets/logos/vcf-rdfizer.png" alt="" /><span>Semantifying genomic variant data<small>VCF files as linked, queryable and policy-aware RDF</small></span></li>
+        </ul>
+        <div class="thanks">
+          <strong>Thank you!<br />Questions?</strong>
+          <p>Slides and publications:<br /><a href="https://ecrum19.github.io/eliascrum/" target="_blank" rel="noopener noreferrer">ecrum19.github.io/eliascrum ↗</a></p>
+          <p>Code:<br /><a href="https://github.com/ecrum19" target="_blank" rel="noopener noreferrer">github.com/ecrum19 ↗</a></p>
+        </div>
+      </div>
+      <p class="footnote">
+        <span>Supported by the <a href="https://www.fwo.be/en/" target="_blank" rel="noopener noreferrer">Research Foundation – Flanders (FWO)</a> through a <a href="https://ecrum19.github.io/eliascrum/about/fellowships/fwo-phd-fellowship" target="_blank" rel="noopener noreferrer">Strategic Basic Research PhD Fellowship</a>.</span>
+      </p>
+    </section>
+
+    <!-- Supplementary slides ================================================= -->
+    <section id="supplementary" class="slide supp-divider" inlist="" rel="schema:hasPart" resource="#supplementary">
+      <p class="eyebrow">Supplementary slides</p>
+      <h2 property="schema:name">Details and evidence</h2>
+      <ol class="supp-index">
+        <li><span>S1</span><a href="#supp-pengquin">PENGQUIN at a glance</a></li>
+        <li><span>S2</span><a href="#supp-federation">The federation study at a glance</a></li>
+        <li><span>S3</span><a href="#supp-ocg">How the generator works</a></li>
+        <li><span>S4</span><a href="#supp-vcf-rdfizer">The VCF-RDFizer pipeline</a></li>
+        <li><span>S5</span><a href="#supp-solid-cockpit">Solid Cockpit features</a></li>
+        <li><span>S6</span><a href="#supp-references">References: our work</a></li>
+        <li><span>S7</span><a href="#supp-references-other">References: other sources</a></li>
+      </ol>
+    </section>
+
+    <section id="supp-pengquin" class="slide supplemental-slide" inlist="" rel="schema:hasPart" resource="#supp-pengquin">
+      <p class="eyebrow">S1 · PENGQUIN</p>
+      <h2 property="schema:name">PENGQUIN at a glance.</h2>
+      <dl class="fact-list">
+        <dt>Project</dt><dd>PErsoNal Genome QUery IN health care and clinical practice</dd>
+        <dt>Funding</dt><dd>FWO PhD Fellowship, Strategic Basic Research</dd>
+        <dt>Period</dt><dd>2024–2028</dd>
+        <dt>Hosts</dt><dd>Ghent University (IDLab, KNoWS) and VITO</dd>
+        <dt>Topics</dt><dd>Genomic knowledge graph generation · data linking · ontology definition · privacy policy enforcement · federated SPARQL querying · scalable decentralized storage</dd>
+      </dl>
+      <p class="source-note">Fellowship details: <a href="https://ecrum19.github.io/eliascrum/about/fellowships/fwo-phd-fellowship" target="_blank" rel="noopener noreferrer">ecrum19.github.io/eliascrum ↗</a></p>
+    </section>
+
+    <section id="supp-federation" class="slide supplemental-slide" inlist="" rel="schema:hasPart" resource="#supp-federation">
+      <p class="eyebrow">S2 · Federation study</p>
+      <h2 property="schema:name">The federation study at a glance.</h2>
+      <div class="cards cards--three">
+        <article class="card"><span class="card__number">67</span><h3>Real queries</h3><p>Question–query pairs written by domain experts and published as SIB endpoint examples.</p></article>
+        <article class="card"><span class="card__number">20+</span><h3>Public endpoints</h3><p>Large biological SPARQL endpoints, each maintained by a different team.</p></article>
+        <article class="card"><span class="card__number">18</span><h3>Months</h3><p>Repeated runs with manual (<code>SERVICE</code>) and algorithmic federation.</p></article>
+      </div>
+      <p class="source-note"><a href="https://ecrum19.github.io/eliascrum/publications/real-world-federation-iswc-2026/paper" target="_blank" rel="noopener noreferrer">Crum et al., ISWC 2026</a>. Every query and run: <a href="https://ecrum19.github.io/fed-survey-results/" target="_blank" rel="noopener noreferrer">ecrum19.github.io/fed-survey-results ↗</a></p>
+    </section>
+
+    <section id="supp-ocg" class="slide supplemental-slide" inlist="" rel="schema:hasPart" resource="#supp-ocg">
+      <p class="eyebrow">S3 · Ontology Companion Generator</p>
+      <h2 property="schema:name">From ontology file to companion site.</h2>
+      <div class="cards cards--three">
+        <article class="card"><span class="card__number">01</span><h3>Input</h3><p>An RDF ontology (Turtle, RDF/XML, JSON-LD or N-Triples), optionally with SHACL, ShEx, examples or a ReSpec specification.</p></article>
+        <article class="card"><span class="card__number">02</span><h3>Configuration</h3><p>One <code>ocg.config.json</code> file for metadata, branding, features and page content.</p></article>
+        <article class="card"><span class="card__number">03</span><h3>Output</h3><p>A static GitHub Pages site: reference, interactive graph, term pages with JSON-LD, w3id.org IRIs and an optional OOPS! pitfall scan.</p></article>
+      </div>
+      <p class="source-note">Source: <a href="https://github.com/ecrum19/ontology_companion_generator" target="_blank" rel="noopener noreferrer">github.com/ecrum19/ontology_companion_generator ↗</a></p>
+    </section>
+
+    <section id="supp-vcf-rdfizer" class="slide supplemental-slide" inlist="" rel="schema:hasPart" resource="#supp-vcf-rdfizer">
+      <p class="eyebrow">S4 · VCF-RDFizer</p>
+      <h2 property="schema:name">The VCF-RDFizer pipeline.</h2>
+      <dl class="fact-list">
+        <dt>Convert</dt><dd>VCF to RDF (N-Triples) with RMLStreamer, targeting the VCF Core vocabulary (<code>vcfc:</code>)</dd>
+        <dt>Compress</dt><dd>Optional compression into queryable HDT and COTTAS artifacts</dd>
+        <dt>Validate</dt><dd>Semantic validation of the compressed graph against its source VCF</dd>
+        <dt>Link</dt><dd>A provenance-tracked side-graph of links to external resources</dd>
+        <dt>Protect</dt><dd>ODRL policies attached to files, regions and variants, with checked release views</dd>
+      </dl>
+      <p class="source-note">Available via PyPI, conda-forge and Docker. Source: <a href="https://github.com/ecrum19/VCF-RDFizer" target="_blank" rel="noopener noreferrer">github.com/ecrum19/VCF-RDFizer ↗</a> · Vocabulary: <a href="https://w3id.org/vcf-core/vocab#" target="_blank" rel="noopener noreferrer">w3id.org/vcf-core/vocab ↗</a></p>
+    </section>
+
+    <section id="supp-solid-cockpit" class="slide supplemental-slide" inlist="" rel="schema:hasPart" resource="#supp-solid-cockpit">
+      <p class="eyebrow">S5 · Solid Cockpit</p>
+      <h2 property="schema:name">One interface for Solid pods.</h2>
+      <div class="cards cards--three">
+        <article class="card"><span class="card__number">01</span><h3>Data manager</h3><p>Browse, upload and organize resources in a Solid pod.</p></article>
+        <article class="card"><span class="card__number">02</span><h3>Privacy editor</h3><p>Privacy-aware permission workflows for sharing pod resources.</p></article>
+        <article class="card"><span class="card__number">03</span><h3>Query facilitator</h3><p>Embedded SPARQL querying over pods and public endpoints, with result materialization.</p></article>
+      </div>
+      <p class="source-note"><a href="https://ecrum19.github.io/eliascrum/publications/solid-cockpit-eswc-2026-demo/paper" target="_blank" rel="noopener noreferrer">Crum et al., ESWC 2026 (demo)</a>. Developed in part within <a href="https://www.chistera.eu/projects/triple" target="_blank" rel="noopener noreferrer">CHIST-ERA TRIPLE</a>. Source: <a href="https://github.com/KNowledgeOnWebScale/solid-cockpit" target="_blank" rel="noopener noreferrer">github.com/KNowledgeOnWebScale/solid-cockpit ↗</a></p>
+    </section>
+
+    <section id="supp-references" class="slide supplemental-slide" inlist="" rel="schema:hasPart" resource="#supp-references">
+      <p class="eyebrow">S6 · References</p>
+      <h2 property="schema:name">Our work cited in this talk.</h2>
+      <ol class="references references--compact">
+        <li><cite>Crum, E.</cite> PENGQUIN: PErsoNal Genome QUery IN healthcare and clinical practice. FWO Strategic Basic Research PhD Fellowship interview, 2024. <a href="https://ecrum19.github.io/eliascrum/talks/fwo-interview" target="_blank" rel="noopener noreferrer">ecrum19.github.io/eliascrum/talks/fwo-interview ↗</a></li>
+        <li><cite>Crum, E., Taelman, R., Buelens, B., Ertaylan, G.</cite> Genomic sequence data sharing for clinical practice: A scoping review. Computers in Biology and Medicine, 2026. <a href="https://doi.org/10.1016/j.compbiomed.2025.111335" target="_blank" rel="noopener noreferrer">doi:10.1016/j.compbiomed.2025.111335 ↗</a></li>
+        <li><cite>Crum, E., Buelens, B., Ertaylan, G., Taelman, R.</cite> From VCF to RDF: RML-based conversion approaches for the semantic representation of variant data. SWAT4HCLS 2026. <a href="https://ecrum19.github.io/eliascrum/publications/vcf-to-rdf-rml-swat4hcls-2026/paper" target="_blank" rel="noopener noreferrer">Paper ↗</a></li>
+        <li><cite>Crum, E., Tam, B.-E., Hanski, J., Sima, A.-C., Mendes de Farias, T., Bolleman, J., Taelman, R.</cite> Does SPARQL federation work in the real world? A case study over large biological SPARQL endpoints. ISWC 2026. <a href="https://ecrum19.github.io/eliascrum/publications/real-world-federation-iswc-2026/paper" target="_blank" rel="noopener noreferrer">Paper ↗</a></li>
+        <li><cite>Crum, E., Buelens, B., Ertaylan, G., Taelman, R.</cite> Solid Cockpit: Data manager, privacy editor, and query facilitator for Solid pods. ESWC 2026 (demo). <a href="https://ecrum19.github.io/eliascrum/publications/solid-cockpit-eswc-2026-demo/paper" target="_blank" rel="noopener noreferrer">Paper ↗</a></li>
+        <li><cite>Crum, E., Buelens, B., Ertaylan, G., Taelman, R.</cite> VCF Core Vocabulary: A semantic foundation for RDF representations of VCF. SWAT4HCLS 2027 manuscript. <a href="https://github.com/ecrum19/SWAT4HCLS_2027/blob/main/long_revised/main_long.pdf" target="_blank" rel="noopener noreferrer">Manuscript ↗</a></li>
+        <li><cite>Crum, E., Buelens, B., Taelman, R., Ertaylan, G.</cite> VCF-RDFizer: From a VCF file to explicit, verifiable, and governable semantic genomic data. BioMedSem manuscript, in preparation. <a href="https://github.com/ecrum19/vcf-rdfizer-testing/blob/main/BioMedSem_2026/paper/paper.pdf" target="_blank" rel="noopener noreferrer">Manuscript ↗</a></li>
+        <li><cite>Crum, E.</cite> VCF Core Vocabulary, v2.1.3. <a href="https://w3id.org/vcf-core/vocab#" target="_blank" rel="noopener noreferrer">w3id.org/vcf-core/vocab ↗</a></li>
+        <li><cite>Crum, E.</cite> VCF-RDFizer. <a href="https://github.com/ecrum19/VCF-RDFizer" target="_blank" rel="noopener noreferrer">github.com/ecrum19/VCF-RDFizer ↗</a></li>
+        <li><cite>Crum, E.</cite> Ontology Companion Generator. <a href="https://github.com/ecrum19/ontology_companion_generator" target="_blank" rel="noopener noreferrer">github.com/ecrum19/ontology_companion_generator ↗</a></li>
+      </ol>
+    </section>
+
+    <section id="supp-references-other" class="slide supplemental-slide" inlist="" rel="schema:hasPart" resource="#supp-references-other">
+      <p class="eyebrow">S7 · References</p>
+      <h2 property="schema:name">Other sources cited in this talk.</h2>
+      <ol class="references references--compact">
+        <li><cite>W3C.</cite> SPARQL 1.1 Federated Query. W3C Recommendation, 2013. <a href="https://www.w3.org/TR/sparql11-federated-query/" target="_blank" rel="noopener noreferrer">w3.org/TR/sparql11-federated-query ↗</a></li>
+        <li><cite>Bergström, A., et al.</cite> Insights into human genetic variation and population history from 929 diverse genomes. Science 367(6484), 2020. <a href="https://doi.org/10.1126/science.aay5012" target="_blank" rel="noopener noreferrer">doi:10.1126/science.aay5012 ↗</a></li>
+        <li><cite>Taelman, R., Van Herwegen, J., Vander Sande, M., Verborgh, R.</cite> Comunica: a modular SPARQL query engine for the Web. ISWC 2018. <a href="https://doi.org/10.1007/978-3-030-00668-6_15" target="_blank" rel="noopener noreferrer">doi:10.1007/978-3-030-00668-6_15 ↗</a></li>
+        <li><cite>Rambla, J., et al.</cite> Beacon v2 and Beacon networks: A “lingua franca” for federated data discovery in biomedical genomics, and beyond. Human Mutation, 2022. <a href="https://doi.org/10.1002/humu.24369" target="_blank" rel="noopener noreferrer">doi:10.1002/humu.24369 ↗</a></li>
+        <li><cite>W3C.</cite> ODRL Information Model 2.2. W3C Recommendation, 2018. <a href="https://www.w3.org/TR/odrl-model/" target="_blank" rel="noopener noreferrer">w3.org/TR/odrl-model ↗</a></li>
+        <li><cite>Solid Community Group.</cite> Solid Protocol. <a href="https://solidproject.org/TR/protocol" target="_blank" rel="noopener noreferrer">solidproject.org/TR/protocol ↗</a></li>
+      </ol>
+      <p class="source-note">Title slide image: “Glowing DNA double helix structure” by <a href="https://unsplash.com/@sangharsh_l" target="_blank" rel="noopener noreferrer">Sangharsh Lohakare</a> on <a href="https://unsplash.com/photos/glowing-dna-double-helix-structure-Iy7QyzOs1bo" target="_blank" rel="noopener noreferrer">Unsplash ↗</a>, used under the <a href="https://unsplash.com/license" target="_blank" rel="noopener noreferrer">Unsplash License</a>; cropped and converted to grayscale.</p>
     </section>
 
     <footer class="site-footer">
       <nav class="footer__links" aria-label="Presentation resources">
-        <a href="https://github.com/ecrum19/slides-generator.sh">Generator source</a>
-        <a href="https://github.com/ecrum19/MetaboLinkAI-Slides">Deck source</a>
-        <a href="https://github.com/ecrum19">GitHub profile</a>
         <a href="https://ecrum19.github.io/eliascrum/">Personal site</a>
-        <a rel="license" href="https://creativecommons.org/licenses/by/4.0/" property="schema:license">Creative Commons Attribution 4.0</a>
+        <a href="https://ecrum19.github.io/fed-survey-results/">Federation results</a>
+        <a href="https://github.com/ecrum19/ontology_companion_generator">Ontology Companion Generator</a>
+        <a href="https://github.com/ecrum19/VCF-RDFizer">VCF-RDFizer</a>
+        <a href="https://github.com/ecrum19/MetaboLinkAI-Slides">Deck source</a>
+        <a rel="license" href="https://creativecommons.org/licenses/by/4.0/" property="schema:license">CC BY 4.0</a>
       </nav>
     </footer>
 

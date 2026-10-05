@@ -6,3 +6,4 @@ bundled/
 .vscode/
 *.log
 coverage/
+.claude/

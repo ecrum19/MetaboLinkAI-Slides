@@ -1,70 +1,32 @@
 # From personal genomes to federated queries
 
-[![Build and deploy](https://github.com/ecrum19/MetaboLinkAI-Slides/actions/workflows/deploy-gh-pages.yml/badge.svg)](https://github.com/ecrum19/MetaboLinkAI-Slides/actions/workflows/deploy-gh-pages.yml)
+Slides for an invited talk at the [MetaboLinkAI](https://www.metabolinkai.net/) virtual meeting on 8 October 2026, by [Elias Crum](https://ecrum19.github.io/eliascrum/) (IDLab, Ghent University – imec, and VITO).
 
-**Live deck:** https://ecrum19.github.io/MetaboLinkAI-Slides/
+**View the slides:** https://ecrum19.github.io/MetaboLinkAI-Slides/
 
-These slides are authored as HTML using the [Shower](https://github.com/shower/shower) framework.
-The visual theme is defined in styles/edc-custom.css.
+## What the talk covers
 
-## Start editing
+| Part | Topic | Related work |
+| --- | --- | --- |
+| 1 | **PENGQUIN**: personal genomes as privacy-aware, queryable linked data in Solid pods | [FWO PhD fellowship](https://ecrum19.github.io/eliascrum/about/fellowships/fwo-phd-fellowship) |
+| 2 | **Does SPARQL federation work in practice?** Findings from an 18-month study of 67 real queries over 20+ public biological endpoints, and what comes next | [Paper (ISWC 2026)](https://ecrum19.github.io/eliascrum/publications/real-world-federation-iswc-2026/paper) · [Results explorer](https://ecrum19.github.io/fed-survey-results/) · [VoRD](https://ecrum19.github.io/vord/) |
+| 3 | **Ontology Companion Generator**: documentation and exploration sites generated from an ontology | [Repository](https://github.com/ecrum19/ontology_companion_generator) · [Usage guide](https://ecrum19.github.io/ontology_companion_generator/usage-guide.html) · [npm](https://www.npmjs.com/package/ontology-companion-generator) |
+| 4 | **Semantifying genomic variant data**: representing VCF files as faithful, linked, policy-aware RDF | [VCF Core](https://ecrum19.github.io/vcf-core-vocabulary/) · [VCF-RDFizer](https://github.com/ecrum19/VCF-RDFizer) |
 
-1. Open index.html and replace the sample slide copy.
-2. Keep one main idea per slide and use the existing classes as a starting point.
-3. Put images and diagrams in assets/; see assets/README.md.
-4. Adjust the design tokens and layout in styles/edc-custom.css.
+Supplementary slides at the end of the deck give further details and the full list of references.
 
-Starter sections include References, Supplemental Slides, and Acknowledgments;
-keep, remove, or duplicate them to match the story of your deck.
+## Viewing the slides
 
-The title, author, venue, date, and links are filled in by the generator. Pass
-dates in ISO 8601 format (YYYY-MM-DD); the title slide gives that date a
-compact, formal treatment.
-If you create a deck manually, replace the remaining %...% metadata tokens first.
+- Click any slide to present it full screen.
+- Use the arrow keys or <kbd>Space</kbd> to move forward. Many slides build up step by step, so a slide may take several presses.
+- Press <kbd>Esc</kbd> to return to the overview of all slides.
+- Links in footnotes and on diagrams open the cited papers, datasets and tools.
 
-## Local development
+## Contact
 
-Use Node.js 22.12 or newer. Install dependencies and start the Shower preview server:
-
-~~~bash
-npm install
-npm run serve
-~~~
-
-Use the URL printed by Shower. The exact port is determined by the installed
-Shower CLI rather than by this README.
-
-## Build outputs
-
-~~~bash
-# Bundle a static version into prepared/
-npm run bundle
-
-# Create a PDF
-npm run pdf
-
-# Create an archive of the prepared deck
-npm run archive
-~~~
-
-The generated prepared/ directory is ignored by Git.
-
-## Deployment
-
-Pushes to main run .github/workflows/deploy-gh-pages.yml. The workflow
-bundles prepared/ and publishes it to the gh-pages branch. In the repository
-settings, configure GitHub Pages to deploy from that branch the first time.
-
-## Metadata
-
-- Author: [Elias Crum](https://ecrum19.github.io/eliascrum/)
-- Venue: [MetaboLinkAI · Virtual Meeting](https://www.metabolinkai.net/)
-- Date: 2026-10-08
-- Source: https://github.com/ecrum19/MetaboLinkAI-Slides/
+Elias Crum · [ORCID 0009-0005-3991-754X](https://orcid.org/0009-0005-3991-754X) · [Personal site](https://ecrum19.github.io/eliascrum/)
 
 ## License
 
-Presentation content is licensed under
-[Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/), unless otherwise indicated.
-This applies to presentation content authored for the deck; third-party logos,
-fonts, and dependencies retain their own licenses or terms.
+The presentation content is licensed under [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/), unless otherwise indicated.
+Third-party logos, images, fonts and software keep their own licenses or terms; the title-slide photograph is by Sangharsh Lohakare on [Unsplash](https://unsplash.com/photos/glowing-dna-double-helix-structure-Iy7QyzOs1bo), used under the Unsplash License.

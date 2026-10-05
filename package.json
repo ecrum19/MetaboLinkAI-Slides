@@ -7,7 +7,7 @@
     "styles/**",
     "index.html"
   ],
-  "description": "Slides for Virtual Meeting on Invited Presentation",
+  "description": "Slides for an invited MetaboLinkAI virtual meeting: PENGQUIN, SPARQL federation in practice, the Ontology Companion Generator and semantifying genomic variant data",
   "author": "Elias Crum",
   "license": "CC-BY-4.0",
   "engines": {

@@ -1,4 +1,4 @@
-# Invited Presentation
+# From personal genomes to federated queries
 
 [![Build and deploy](https://github.com/ecrum19/MetaboLinkAI-Slides/actions/workflows/deploy-gh-pages.yml/badge.svg)](https://github.com/ecrum19/MetaboLinkAI-Slides/actions/workflows/deploy-gh-pages.yml)
 
@@ -58,7 +58,7 @@ settings, configure GitHub Pages to deploy from that branch the first time.
 ## Metadata
 
 - Author: [Elias Crum](https://ecrum19.github.io/eliascrum/)
-- Venue: [Virtual Meeting](https://www.metabolinkai.net/)
+- Venue: [MetaboLinkAI · Virtual Meeting](https://www.metabolinkai.net/)
 - Date: 2026-10-08
 - Source: https://github.com/ecrum19/MetaboLinkAI-Slides/
 

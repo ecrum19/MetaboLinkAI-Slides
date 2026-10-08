@@ -2936,6 +2936,11 @@ a.live-tag:hover,
     line-height: 1.35;
 }
 
+/* Calmer builds: no per-cell pop-in for waffle charts. */
+.shower.full .slide .waffle .cell {
+    animation: none !important;
+}
+
 /* Fact sheet for supplementary slides (label / value rows). */
 .fact-list {
     display: grid;

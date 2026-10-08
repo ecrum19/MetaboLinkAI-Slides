@@ -119,7 +119,7 @@
     <!-- Overview ------------------------------------------------------------ -->
     <section id="overview" class="slide story" inlist="" rel="schema:hasPart" resource="#overview">
       <p class="eyebrow">Overview</p>
-      <h2 property="schema:name">Four parts, one thread: making life-science data usable.</h2>
+      <h2 property="schema:name">Four chapters, one thread: improving genomic and biomedical data workflows using semantic technologies.</h2>
       <ol class="overview">
         <li><a href="#part-pengquin"><img class="part-logo" src="assets/logos/pengquin.png" alt="" /><strong><span>01</span>PENGQUIN, my PhD</strong><small>Personal genomes as privacy-aware, queryable knowledge graphs</small></a></li>
         <li><a href="#part-federation"><svg aria-hidden="true"><use href="#i-federation" /></svg><strong><span>02</span>SPARQL federation in practice</strong><small>What happens when real queries meet real public endpoints</small></a></li>
@@ -141,16 +141,16 @@
             <img class="section-divider__logo" src="assets/logos/pengquin.png" alt="PENGQUIN logo: a penguin with a stethoscope, holding a magnifying glass and a DNA strand" />
           </div>
           <h2 property="schema:name">PENGQUIN</h2>
-          <p class="lead">Personal genome query in health care and clinical practice: storing, linking and querying genomic data with decentralized, semantic web technologies.</p>
+          <p class="lead">Personal genome query in health care and clinical practice: storing, linking, and querying genomic data with decentralized, semantic web technologies.</p>
         </div>
         <div class="section-contents">
           <span class="note__label">In this part</span>
           <ol>
-            <li>The problem: flat files in silos</li>
+            <li>The problem: flat, self-contained files in silos</li>
             <li>The architecture</li>
             <li>Genomes as linked data</li>
             <li>Privacy policies</li>
-            <li>Querying one pod or thousands</li>
+            <li>Querying one genome to thousands</li>
           </ol>
         </div>
       </div>
@@ -165,7 +165,7 @@
     <!-- 1.1 · The problem --------------------------------------------------- -->
     <section id="pengquin-problem" class="slide story" inlist="" rel="schema:hasPart" resource="#pengquin-problem">
       <p class="eyebrow">1.1 · The problem</p>
-      <h2 property="schema:name">A genome ends up as a flat file, held by one institution.</h2>
+      <h2 property="schema:name">VCF files are flat, self-contained files, held by one institution.</h2>
       <figure class="visual">
         <svg viewBox="0 0 880 330" role="img" aria-label="A sequenced genome of about 200 GB of raw reads becomes a variant file (VCF) of about 200 MB with about 3 million variants. The VCF is flat, tab-separated text, for example the row chr1, 13613, rs879980801, T, A, genotype 0/1. Copies sit in separate silos: a hospital and a genetics lab each keep their own, and the patient has no direct access.">
           <g>
@@ -215,7 +215,7 @@
           </g>
         </svg>
       </figure>
-      <p class="takehome"><span class="takehome__label">Key message</span><span>The data exists, but as flat files in separate institutional silos.</span></p>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Genomic data often stays in flat files, held separately by each institution.</span></p>
       <p class="footnote">
         <span><sup>1</sup> Sizes: <a href="https://ecrum19.github.io/eliascrum/talks/fwo-interview" target="_blank" rel="noopener noreferrer">PENGQUIN proposal</a> · ≈ 3 M variants per person: <a href="https://doi.org/10.1126/science.aay5012" target="_blank" rel="noopener noreferrer">Bergström et al. 2020</a></span>
         <span><sup>2</sup> Rows from the <a href="https://github.com/ecrum19/vcf-core-vocabulary/blob/main/examples/core/example.vcf" target="_blank" rel="noopener noreferrer">VCF Core example file</a></span>
@@ -303,7 +303,7 @@
           </g>
         </svg>
       </figure>
-      <p class="takehome"><span class="takehome__label">Key message</span><span>Every layer is a web standard: RDF, Solid, ODRL and SPARQL.</span></p>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Each layer builds on open web specifications: RDF, Solid, ODRL and SPARQL.</span></p>
       <p class="footnote">
         <span>Steps 1–2: WP1 · step 3: WP2 · step 4: WP3 of the <a href="https://ecrum19.github.io/eliascrum/talks/fwo-interview" target="_blank" rel="noopener noreferrer">PENGQUIN proposal</a></span>
         <span><a href="https://solidproject.org/TR/protocol" target="_blank" rel="noopener noreferrer">Solid Protocol</a> · <a href="https://www.w3.org/TR/odrl-model/" target="_blank" rel="noopener noreferrer">ODRL 2.2</a> · <a href="https://doi.org/10.1007/978-3-030-00668-6_15" target="_blank" rel="noopener noreferrer">Comunica</a></span>
@@ -355,7 +355,7 @@
           </g>
         </svg>
       </figure>
-      <p class="takehome"><span class="takehome__label">Key message</span><span>Once a variant is a node, it can be joined with any other knowledge graph.</span></p>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>With shared identifiers, a variant can be joined with other knowledge graphs.</span></p>
       <p class="footnote">
         <span><sup>1</sup> Record 1 of the <a href="https://github.com/ecrum19/vcf-core-vocabulary/blob/main/examples/core/example.vcf" target="_blank" rel="noopener noreferrer">VCF Core example file</a>, converted with <a href="https://github.com/ecrum19/VCF-RDFizer" target="_blank" rel="noopener noreferrer">VCF-RDFizer</a> (part 4)</span>
         <span><sup>2</sup> Estimate from the <a href="https://ecrum19.github.io/eliascrum/talks/fwo-interview" target="_blank" rel="noopener noreferrer">PENGQUIN proposal</a></span>
@@ -408,7 +408,7 @@
           </g>
         </svg>
       </figure>
-      <p class="takehome"><span class="takehome__label">Key message</span><span>Access is decided per gene or region, not per file.</span></p>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Access can be decided per gene or region, not only per file.</span></p>
       <p class="footnote">
         <span><sup>1</sup> <a href="https://www.w3.org/TR/odrl-model/" target="_blank" rel="noopener noreferrer">ODRL 2.2</a> · region selector from the <a href="https://github.com/ecrum19/VCF-RDFizer/blob/main/docs/policy-demonstrator.md" target="_blank" rel="noopener noreferrer">VCF-RDFizer policy demonstrator</a></span>
       </p>
@@ -474,7 +474,7 @@
           </g>
         </svg>
       </figure>
-      <p class="takehome"><span class="takehome__label">Key message</span><span>Querying many personal pods is federation; part 2 tests federation in practice.</span></p>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Querying many personal pods is a federation problem; part 2 looks at federation in practice.</span></p>
       <p class="footnote">
         <span><sup>1</sup> Paraphrased from the <a href="https://ecrum19.github.io/eliascrum/talks/fwo-interview" target="_blank" rel="noopener noreferrer">PENGQUIN proposal</a>; rs879980801 from the <a href="https://github.com/ecrum19/vcf-core-vocabulary/blob/main/examples/core/example.vcf" target="_blank" rel="noopener noreferrer">VCF Core example file</a></span>
         <span><sup>2</sup> <a href="https://doi.org/10.1002/humu.24369" target="_blank" rel="noopener noreferrer">GA4GH Beacon v2</a> · <a href="https://doi.org/10.1007/978-3-030-00668-6_15" target="_blank" rel="noopener noreferrer">Comunica</a></span>
@@ -551,7 +551,7 @@
           </g>
         </svg>
       </figure>
-      <p class="takehome"><span class="takehome__label">Key message</span><span>Algorithmic federation was far less reliable than manual federation.</span></p>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>In our study, algorithmic federation answered far fewer queries than manual federation.</span></p>
       <p class="footnote">
         <span>All runs: manual 47.3% non-empty, 46.2% errors · algorithmic 3.0%, 95.1%</span>
         <span><a href="https://ecrum19.github.io/eliascrum/publications/real-world-federation-iswc-2026/paper" target="_blank" rel="noopener noreferrer">ISWC 2026 paper</a> · <a href="https://ecrum19.github.io/fed-survey-results/" target="_blank" rel="noopener noreferrer">every query and run</a> · set-up: <a href="#supp-federation">S2</a></span>
@@ -615,7 +615,7 @@
           </g>
         </svg>
       </figure>
-      <p class="takehome"><span class="takehome__label">Key message</span><span>Engines that plan blind cannot adapt to limits they cannot see.</span></p>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Without knowing endpoint limits, engines have little to adapt to.</span></p>
       <p class="footnote">
         <span><sup>1</sup> One algorithmic run of <em class="qname">query 6</em></span>
         <span><sup>2</sup> With and without client-side rate-limit mitigation: <a href="https://ecrum19.github.io/eliascrum/publications/real-world-federation-iswc-2026/paper" target="_blank" rel="noopener noreferrer">ISWC 2026 paper</a>, Sec. 5.4</span>
@@ -703,7 +703,7 @@
           </g>
         </svg>
       </figure>
-      <p class="takehome"><span class="takehome__label">Key message</span><span>Public endpoints evolve as a matter of course; federated queries must be robust to it.</span></p>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Public endpoints evolve over time; federated queries need to cope with that.</span></p>
       <p class="footnote">
         <span>Small dots: runs (25) · large dots: period averages</span>
         <span><sup>1</sup> Per UniProt's administrator · 68.7% of queries varied in result count: <a href="https://ecrum19.github.io/eliascrum/publications/real-world-federation-iswc-2026/paper" target="_blank" rel="noopener noreferrer">ISWC 2026 paper</a></span>
@@ -769,7 +769,7 @@
           </g>
         </svg>
       </figure>
-      <p class="takehome"><span class="takehome__label">Key message</span><span>If endpoints publish their limits, engines and users can stay within them.</span></p>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Published limits could help engines and users stay within them.</span></p>
       <p class="footnote">
         <span><sup>1</sup> <a href="https://ecrum19.github.io/vord/" target="_blank" rel="noopener noreferrer">VoRD</a> (v0.2) extends <a href="https://www.w3.org/TR/sparql11-service-description/" target="_blank" rel="noopener noreferrer">SPARQL 1.1 Service Description</a>; its site is built with OCG (part 3)</span>
         <span>Card values: VoRD's <a href="https://github.com/ecrum19/vord/blob/main/examples/wikidata-rate-restrictions.ttl" target="_blank" rel="noopener noreferrer">Wikidata example</a>, from Wikimedia's rate-limit documentation</span>
@@ -835,7 +835,7 @@
           </g>
         </svg>
       </figure>
-      <p class="takehome"><span class="takehome__label">Key message</span><span>Engines that read published limits can adapt instead of probing blindly.</span></p>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Engines that read published limits could plan within them from the start.</span></p>
       <p class="footnote">
         <span>Recommendations: <a href="https://ecrum19.github.io/eliascrum/publications/real-world-federation-iswc-2026/paper" target="_blank" rel="noopener noreferrer">ISWC 2026 paper</a>, Sec. 6 · <a href="https://www.rfc-editor.org/rfc/rfc6585" target="_blank" rel="noopener noreferrer">HTTP 429</a></span>
         <span>The same loop applies to querying many personal pods (part 1)</span>
@@ -923,7 +923,7 @@
           </g>
         </svg>
       </figure>
-      <p class="takehome"><span class="takehome__label">Key message</span><span>Publishing a vocabulary well is repetitive work; OCG generates it from the source.</span></p>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Publishing a vocabulary involves a lot of repetitive work; OCG generates it from the source.</span></p>
       <p class="footnote">
         <span><sup>1</sup> From <a href="https://github.com/ecrum19/vord/blob/main/vocab/vord.ttl" target="_blank" rel="noopener noreferrer">vord.ttl</a> · VoRD and <a href="https://ecrum19.github.io/vcf-core-vocabulary/" target="_blank" rel="noopener noreferrer">VCF Core</a> are both published with OCG</span>
       </p>
@@ -992,7 +992,7 @@
           </g>
         </svg>
       </figure>
-      <p class="takehome"><span class="takehome__label">Key message</span><span>Human docs and machine-readable RDF come from the same source, in one build.</span></p>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Human docs and machine-readable RDF come from the same source, in one build.</span></p>
       <p class="footnote">
         <span><a href="https://github.com/rubensworks/rdf-parse.js" target="_blank" rel="noopener noreferrer">rdf-parse</a> · <a href="https://graphology.github.io/" target="_blank" rel="noopener noreferrer">Graphology</a> · <a href="https://www.sigmajs.org/" target="_blank" rel="noopener noreferrer">Sigma.js</a> · <a href="https://oops.linkeddata.es" target="_blank" rel="noopener noreferrer">OOPS!</a> · step by step: <a href="https://ecrum19.github.io/ontology_companion_generator/usage-guide.html#getting-started" target="_blank" rel="noopener noreferrer">Usage Guide</a></span>
         <span><sup>1</sup> See the <a href="https://github.com/ecrum19/ontology_companion_generator#persistent-iris-and-linked-data" target="_blank" rel="noopener noreferrer">OCG README</a>; hash IRIs return the whole ontology, not one term</span>
@@ -1015,7 +1015,7 @@
           <figcaption>Graph: every restriction type around <code>vord:Restriction</code></figcaption>
         </figure>
       </div>
-      <p class="takehome"><span class="takehome__label">Key message</span><span><a href="https://ecrum19.github.io/vord/" target="_blank" rel="noopener noreferrer">VoRD</a> and <a href="https://ecrum19.github.io/vcf-core-vocabulary/" target="_blank" rel="noopener noreferrer">VCF Core</a> each get docs, a graph and term pages from one config file.</span></p>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span><a href="https://ecrum19.github.io/vord/" target="_blank" rel="noopener noreferrer">VoRD</a> and <a href="https://ecrum19.github.io/vcf-core-vocabulary/" target="_blank" rel="noopener noreferrer">VCF Core</a> each get docs, a graph and term pages from one config file.</span></p>
       <p class="footnote">
         <span><a href="https://ecrum19.github.io/vord/" target="_blank" rel="noopener noreferrer">VoRD</a> · <a href="https://ecrum19.github.io/vcf-core-vocabulary/" target="_blank" rel="noopener noreferrer">VCF Core</a> · <a href="https://ecrum19.github.io/ontology_companion_generator/" target="_blank" rel="noopener noreferrer">OCG example site</a> · <a href="https://www.npmjs.com/package/ontology-companion-generator" target="_blank" rel="noopener noreferrer">npm package</a> (v1.6.0)</span>
       </p>
@@ -1070,7 +1070,7 @@
           </g>
         </svg>
       </figure>
-      <p class="takehome"><span class="takehome__label">Docs</span><span>In-depth examples and documentation for every option: <a href="https://ecrum19.github.io/ontology_companion_generator/usage-guide.html" target="_blank" rel="noopener noreferrer">OCG Usage Guide ↗</a></span></p>
+      <p class="takehome next"><span class="takehome__label">Docs</span><span>In-depth examples and documentation for every option: <a href="https://ecrum19.github.io/ontology_companion_generator/usage-guide.html" target="_blank" rel="noopener noreferrer">OCG Usage Guide ↗</a></span></p>
       <p class="footnote">
         <span><sup>1</sup> Radii, per-component styling and custom CSS: new in v1.6.0</span>
         <span><a href="https://oops.linkeddata.es" target="_blank" rel="noopener noreferrer">OOPS!</a> · <a href="http://vowl.visualdataweb.org/webvowl.html" target="_blank" rel="noopener noreferrer">WebVOWL</a> · <a href="https://respec.org/docs/" target="_blank" rel="noopener noreferrer">ReSpec</a> · <a href="https://w3id.org/" target="_blank" rel="noopener noreferrer">w3id.org</a></span>
@@ -1155,7 +1155,7 @@
           </g>
         </svg>
       </figure>
-      <p class="takehome"><span class="takehome__label">Key message</span><span>Both readings look plausible; lose the structure and evidence lands on the wrong allele.</span></p>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Both readings look plausible; only the structure shows which allele the evidence supports.</span></p>
       <p class="footnote">
         <span><sup>1</sup> <code>Number=LR</code>: <a href="https://samtools.github.io/hts-specs/VCFv4.5.pdf" target="_blank" rel="noopener noreferrer">VCF 4.5 specification</a> · example from the <a href="https://github.com/ecrum19/SWAT4HCLS_2027/blob/main/long_revised/main_long.pdf" target="_blank" rel="noopener noreferrer">VCF Core paper</a></span>
         <span><sup>2</sup> Use cases from the <a href="https://github.com/ecrum19/vcf-rdfizer-testing/blob/main/BioMedSem_2026/paper/paper.pdf" target="_blank" rel="noopener noreferrer">VCF-RDFizer paper</a></span>
@@ -1217,7 +1217,7 @@
           </g>
         </svg>
       </figure>
-      <p class="takehome"><span class="takehome__label">Key message</span><span><code>forAllele</code> resolves the local-allele rule once, at conversion; every query reuses it.</span></p>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span><code>forAllele</code> resolves the local-allele rule once, at conversion; every query reuses it.</span></p>
       <p class="footnote">
         <span><a href="https://ecrum19.github.io/vcf-core-vocabulary/" target="_blank" rel="noopener noreferrer">VCF Core v2.1.3</a> · <a href="https://github.com/ecrum19/vcf-core-vocabulary/tree/v2.1.3/mappings" target="_blank" rel="noopener noreferrer">123 SSSOM alignments</a> · model from the <a href="https://github.com/ecrum19/SWAT4HCLS_2027/blob/main/long_revised/main_long.pdf" target="_blank" rel="noopener noreferrer">VCF Core paper</a>, Fig. 1</span>
         <span><sup>2</sup> 10,000 records × 2,504 samples: <a href="https://github.com/ecrum19/vcf-rdfizer-testing/blob/main/BioMedSem_2026/paper/paper.pdf" target="_blank" rel="noopener noreferrer">VCF-RDFizer paper</a></span>
@@ -1286,7 +1286,7 @@
           </g>
         </svg>
       </figure>
-      <p class="takehome"><span class="takehome__label">Key message</span><span>Each conversion is checked against its source; links and policies stay separate data.</span></p>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Conversions can be checked against their source; links and policies stay separate data.</span></p>
       <p class="footnote">
         <span><sup>1</sup> <a href="https://github.com/RMLio/RMLStreamer" target="_blank" rel="noopener noreferrer">RMLStreamer</a> emits the record backbone, ≈ 5% of triples</span>
         <span><a href="https://github.com/ecrum19/VCF-RDFizer" target="_blank" rel="noopener noreferrer">VCF-RDFizer</a> (PyPI · Conda-Forge · Docker) · <a href="https://doi.org/10.1093/bioinformatics/btz856" target="_blank" rel="noopener noreferrer">SPDI</a> · <a href="https://github.com/ecrum19/vcf-rdfizer-testing/blob/main/BioMedSem_2026/paper/paper.pdf" target="_blank" rel="noopener noreferrer">VCF-RDFizer paper</a></span>
@@ -1346,7 +1346,7 @@
           </g>
         </svg>
       </figure>
-      <p class="takehome"><span class="takehome__label">Key message</span><span>Tests derived from the specification catch errors that plausible-looking output would hide.</span></p>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Specification-derived tests caught errors that plausible-looking output had hidden.</span></p>
       <p class="footnote">
         <span><sup>1</sup> <a href="https://github.com/ecrum19/SWAT4HCLS_2027/blob/main/long_revised/main_long.pdf" target="_blank" rel="noopener noreferrer">VCF Core paper</a>, RQ1–RQ2; untested requirements count against coverage</span>
         <span><sup>2</sup> <a href="https://github.com/ecrum19/vcf-rdfizer-testing/blob/main/BioMedSem_2026/paper/paper.pdf" target="_blank" rel="noopener noreferrer">VCF-RDFizer paper</a>; graphs up to 17.1M triples</span>
@@ -1405,7 +1405,7 @@
           </g>
         </svg>
       </figure>
-      <p class="takehome"><span class="takehome__label">Key message</span><span>RDF is not needed for the answer; it makes the links and release rules reusable data.</span></p>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>Both routes gave the same answers; RDF keeps the links and release rules as reusable data.</span></p>
       <p class="footnote">
         <span><sup>1</sup> <a href="https://doi.org/10.1016/j.gim.2023.100866" target="_blank" rel="noopener noreferrer">ACMG SF v3.2</a> · <a href="https://www.ncbi.nlm.nih.gov/clinvar/" target="_blank" rel="noopener noreferrer">ClinVar</a> 2026-09-13, ≥ 1 review star</span>
         <span><sup>2</sup> Matches, not people; consents simulated; four arms in the <a href="https://github.com/ecrum19/vcf-rdfizer-testing/blob/main/BioMedSem_2026/paper/paper.pdf" target="_blank" rel="noopener noreferrer">VCF-RDFizer paper</a></span>
@@ -1467,7 +1467,7 @@
           </g>
         </svg>
       </figure>
-      <p class="takehome"><span class="takehome__label">Key message</span><span>Use RDF for repeated, linked or governed questions; parse the VCF for one-pass work.</span></p>
+      <p class="takehome next"><span class="takehome__label">Key message</span><span>In our tests, RDF suited repeated or linked questions; parsing the VCF suited one-pass work.</span></p>
       <p class="footnote">
         <span><sup>1</sup> ≈ 2 min setup (95.7 s conversion + 25.0 s indexing), ≈ 10.9 s saved per question</span>
         <span><sup>2</sup> 17.1M triples, 11,160 runs, all answers equal · <a href="https://qlever.cs.uni-freiburg.de/" target="_blank" rel="noopener noreferrer">QLever</a> · <a href="https://github.com/ecrum19/vcf-rdfizer-testing/blob/main/BioMedSem_2026/paper/paper.pdf" target="_blank" rel="noopener noreferrer">VCF-RDFizer paper</a></span>
